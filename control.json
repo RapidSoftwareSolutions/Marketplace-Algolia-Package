@@ -1,0 +1,560 @@
+{
+    "getLogs": {
+        "url": "/1/logs",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "Number|offset": "offset",
+            "Number|length": "length",
+            "String|type": "type"
+        }
+    },
+    "addGlobalApiKey": {
+        "url": "/1/keys",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "Number|validity": "validity",
+            "Number|maxQueriesPerIPPerHour": "maxQueriesPerIPPerHour",
+            "Number|maxHitsPerQuery": "maxHitsPerQuery",
+            "JSON|acl": "$acl",
+            "JSON|indexes": "indexes",
+            "JSON|referers": "referers",
+            "String|queryParameters": "queryParameters",
+            "String|description": "description"
+        }
+    },
+    "updateGlobalApiKey": {
+        "url": "/1/keys/:key",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|key": "!key",
+            "Number|validity": "validity",
+            "Number|maxQueriesPerIPPerHour": "maxQueriesPerIPPerHour",
+            "Number|maxHitsPerQuery": "maxHitsPerQuery",
+            "JSON|acl": "$acl",
+            "JSON|indexes": "indexes",
+            "JSON|referers": "referers",
+            "String|queryParameters": "queryParameters",
+            "String|description": "description"
+        }
+    },
+    "getGlobalApiKeys": {
+        "url": "/1/keys",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId"
+        }
+    },
+    "getGlobalApiKeyRights": {
+        "url": "/GET",
+        "method": "/1/keys/:key",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|key": "$key"
+        }
+    },
+    "deleteGlobalApiKey": {
+        "url": "/1/keys/:key",
+        "method": "DELETE",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|key": "$!key"
+        }
+    },
+    "getSingleSynonymsSet": {
+        "url": "/ /1/indexes/:indexName/synonyms/:objectId",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId"
+        }
+    },
+    "deleteSingleSynonymsSet": {
+        "url": "/ /1/indexes/:indexName/synonyms/:objectId",
+        "method": "DELETE",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlaves": "forwardToSlaves"
+        }
+    },
+    "deleteAllSynonyms": {
+        "url": "/1/indexes/:indexName/synonyms/clear",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "Boolean|forwardToSlaves": "forwardToSlaves"
+        }
+    },
+    "searchSynonyms": {
+        "url": "/1/indexes/:indexName/synonyms/search",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|query": "query",
+            "String|type": "type",
+            "String|page": "page",
+            "String|hitsPerPage": "hitsPerPage"
+        }
+    },
+    "createRegularSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "JSON|synonyms": "$synonyms"
+        },
+        "values": {
+            "type": "synonym"
+        }
+    },
+    "createOnwWaySynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|input": "$input",
+            "JSON|synonyms": "$synonyms"
+        },
+        "values": {
+            "type": "onewaysynonym"
+        }
+    },
+    "createAlternativeCorrectionSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|type": "$type",
+            "String|word": "$word",
+            "JSON|corrections": "$corrections"
+        }
+    },
+    "createPlaceholderSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|placeholder": "$placeholder",
+            "JSON|replacements": "$replacements"
+        },
+        "values": {
+            "type": "placeholder"
+        }
+    },
+    "addMultipleSynonyms": {
+        "url": "/1/indexes/:indexName/synonyms/batch",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "JSON|synonyms": "$synonyms"
+        }
+    },
+    "getIndexes": {
+        "url": "/1/indexes",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId"
+        }
+    },
+    "querySingleIndex": {
+        "url": "/1/indexes/:indexName",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|query": "query",
+            "String|queryType": "queryType",
+            "String|typoTolerance": "typoTolerance",
+            "Number|minWordSizefor1Typo": "minWordSizefor1Typo",
+            "Number|minWordSizefor2Typos": "minWordSizefor2Typos",
+            "String|allowTyposOnNumericTokens": "allowTyposOnNumericTokens",
+            "Boolean|ignorePlurals": "ignorePlurals",
+            "String|restrictSearchableAttributes": "restrictSearchableAttributes",
+            "String|advancedSyntax": "advancedSyntax",
+            "Boolean|analytics": "analytics",
+            "String|analyticsTags": "analyticsTags",
+            "Boolean|synonyms": "synonyms",
+            "Boolean|replaceSynonymsInHighlight": "replaceSynonymsInHighlight",
+            "String|optionalWords": "optionalWords",
+            "String|minProximity": "minProximity",
+            "String|removeWordsIfNoResults": "removeWordsIfNoResults",
+            "String|disableTypoToleranceOnAttributes": "disableTypoToleranceOnAttributes",
+            "String|removeStopWords": "removeStopWords",
+            "String|exactOnSingleWordQuery": "exactOnSingleWordQuery",
+            "String|alternativesAsExact": "alternativesAsExact",
+            "Number|page": "page",
+            "Number|hitsPerPage": "hitsPerPage",
+            "Number|offset": "offset",
+            "Number|length": "length",
+            "String|attributesToRetrieve": "attributesToRetrieve",
+            "String|attributesToHighlight": "attributesToHighlight",
+            "String|attributesToSnippet": "attributesToSnippet",
+            "Number|getRankingInfo": "getRankingInfo",
+            "String|highlightPreTag": "highlightPreTag",
+            "String|highlightPostTag": "highlightPostTag",
+            "String|snippetEllipsisText": "snippetEllipsisText",
+            "String|responseFields": "responseFields",
+            "String|numericFilters": "numericFilters",
+            "String|tagFilters": "tagFilters",
+            "Number|distinct": "distinct",
+            "String|facets": "facets",
+            "String|facetFilters": "facetFilters",
+            "Number|maxValuesPerFacet": "maxValuesPerFacet",
+            "String|filters": "filters",
+            "String|aroundLatLng": "aroundLatLng",
+            "String|aroundRadius": "aroundRadius",
+            "String|aroundPrecision": "aroundPrecision",
+            "String|minimumAroundRadius": "minimumAroundRadius",
+            "String|insideBoundingBox": "insideBoundingBox",
+            "String|insidePolygon": "insidePolygon"
+        }
+    },
+    "deleteSingleIndex": {
+        "url": "/1/indexes/:indexName",
+        "method": "DELETE",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName"
+        }
+    },
+    "clearSingleIndex": {
+        "url": "/1/indexes/:indexName/clear",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName"
+        }
+    },
+    "queryMultipleIndexes": {
+        "url": "/1/indexes/*/queries",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "JSON|data": "$data"
+        }
+    },
+    "addSingleObjectToIndex": {
+        "url": "/1/indexes/:indexName/:objectId",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "JSON|object": "$!object"
+        }
+    },
+    "updateSingleObject": {
+        "url": "/1/indexes/:indexName/:objectId",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "JSON|object": "$!object"
+        }
+    },
+    "partiallyUpdateObject": {
+        "url": "/1/indexes/:indexName/objectId/partial",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$objectId",
+            "JSON|object": "$object",
+            "Boolean|createIfNotExists": "createIfNotExists"
+        }
+    },
+    "getSingleObject": {
+        "url": "/1/indexes/:indexName/:objectId",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId"
+        }
+    },
+    "getObjects": {
+        "url": "/1/indexes/*/objects",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "JSON|requests": "$requests"
+        }
+    },
+    "deleteSingleObject": {
+        "url": "/1/indexes/:indexName/:objectId",
+        "method": "DELETE",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId"
+        }
+    },
+    "getIndexSettings": {
+        "url": "/1/indexes/:indexName/settings",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "JSON|attributesToIndex": "attributesToIndex",
+            "String|numericAttributesToIndex": "numericAttributesToIndex",
+            "JSON|attributesForFaceting": "attributesForFaceting",
+            "String|attributeForDistinct": "attributeForDistinct",
+            "JSON|ranking": "ranking",
+            "JSON|customRanking": "customRanking",
+            "String|separatorsToIndex": "separatorsToIndex",
+            "String|slaves": "slaves",
+            "String|unretrievableAttributes": "unretrievableAttributes",
+            "Boolean|allowCompressionOfIntegerArray": "allowCompressionOfIntegerArray",
+            "JSON|synonyms": "synonyms",
+            "JSON|placeholders": "placeholders",
+            "JSON|altCorrections": "altCorrections",
+            "JSON|disableTypoToleranceOnWords": "disableTypoToleranceOnWords",
+            "JSON|disableTypoToleranceOnAttributes": "disableTypoToleranceOnAttributes",
+            "JSON|disablePrefixOnAttributes": "disablePrefixOnAttributes",
+            "JSON|disableExactOnAttributes": "disableExactOnAttributes",
+            "Number|minWordSizefor1Typo": "minWordSizefor1Typo",
+            "Number|minWordSizefor2Typos": "minWordSizefor2Typos",
+            "Number|hitsPerPage": "hitsPerPage",
+            "JSON|attributesToRetrieve": "attributesToRetrieve",
+            "JSON|attributesToHighlight": "attributesToHighlight",
+            "JSON|attributesToSnippet": "attributesToSnippet",
+            "String|queryType": "queryType",
+            "Number|minProximity": "minProximity",
+            "String|highlightPreTag": "highlightPreTag",
+            "String|highlightPostTag": "highlightPostTag",
+            "JSON|optionalWords": "optionalWords",
+            "Boolean|allowTyposOnNumericTokens": "allowTyposOnNumericTokens",
+            "Boolean|ignorePlurals": "ignorePlurals",
+            "Boolean|advancedSyntax": "advancedSyntax",
+            "Boolean|replaceSynonymsInHighlight": "replaceSynonymsInHighlight",
+            "Number|maxValuesPerFacet": "maxValuesPerFacet",
+            "Number|distinct": "distinct",
+            "String|typoTolerance": "typoTolerance",
+            "String|removeStopWords": "removeStopWords",
+            "String|snippetEllipsisText": "snippetEllipsisText",
+            "String|exactOnSingleWordQuery": "exactOnSingleWordQuery",
+            "String|alternativesAsExact": "alternativesAsExact"
+        }
+    },
+    "getIndexContent": {
+        "url": "/1/indexes/:indexName/browse",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName"
+        }
+    },
+    "changeIndexSettings": {
+        "url": "/1/indexes/:indexName/settings?forwardToSlaves=:forwardToSlaves",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "Boolean|forwardToSlaves": "!forwardToSlaves",
+            "JSON|attributesToIndex": "attributesToIndex",
+            "String|numericAttributesToIndex": "numericAttributesToIndex",
+            "JSON|attributesForFaceting": "attributesForFaceting",
+            "String|attributeForDistinct": "attributeForDistinct",
+            "JSON|ranking": "ranking",
+            "JSON|customRanking": "customRanking",
+            "String|separatorsToIndex": "separatorsToIndex",
+            "String|slaves": "slaves",
+            "String|unretrievableAttributes": "unretrievableAttributes",
+            "Boolean|allowCompressionOfIntegerArray": "allowCompressionOfIntegerArray",
+            "JSON|synonyms": "synonyms",
+            "JSON|placeholders": "placeholders",
+            "JSON|altCorrections": "altCorrections",
+            "JSON|disableTypoToleranceOnWords": "disableTypoToleranceOnWords",
+            "JSON|disableTypoToleranceOnAttributes": "disableTypoToleranceOnAttributes",
+            "JSON|disablePrefixOnAttributes": "disablePrefixOnAttributes",
+            "JSON|disableExactOnAttributes": "disableExactOnAttributes",
+            "Number|minWordSizefor1Typo": "minWordSizefor1Typo",
+            "Number|minWordSizefor2Typos": "minWordSizefor2Typos",
+            "Number|hitsPerPage": "hitsPerPage",
+            "JSON|attributesToRetrieve": "attributesToRetrieve",
+            "JSON|attributesToHighlight": "attributesToHighlight",
+            "JSON|attributesToSnippet": "attributesToSnippet",
+            "String|queryType": "queryType",
+            "Number|minProximity": "minProximity",
+            "String|highlightPreTag": "highlightPreTag",
+            "String|highlightPostTag": "highlightPostTag",
+            "JSON|optionalWords": "optionalWords",
+            "Boolean|allowTyposOnNumericTokens": "allowTyposOnNumericTokens",
+            "Boolean|ignorePlurals": "ignorePlurals",
+            "Boolean|advancedSyntax": "advancedSyntax",
+            "Boolean|replaceSynonymsInHighlight": "replaceSynonymsInHighlight",
+            "Number|maxValuesPerFacet": "maxValuesPerFacet",
+            "Number|distinct": "distinct",
+            "String|typoTolerance": "typoTolerance",
+            "String|removeStopWords": "removeStopWords",
+            "String|snippetEllipsisText": "snippetEllipsisText",
+            "String|exactOnSingleWordQuery": "exactOnSingleWordQuery",
+            "String|alternativesAsExact": "alternativesAsExact"
+        }
+    },
+    "copySingleIndex": {
+        "url": "/1/indexes/:indexName/operation",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|destination": "$destination"
+        },
+        "values": {
+            "operation": "copy"
+        }
+    },
+    "moveSingleIndex": {
+        "url": "/1/indexes/:indexName/operation",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|destination": "$destination"
+        },
+        "values": {
+            "operation": "move"
+        }
+    },
+    "getTaskStatus": {
+        "url": "/1/indexes/:indexName/task/:task",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|task": "$!task"
+        }
+    },
+    "addIndexSpecificApiKey": {
+        "url": "/1/indexes/:indexName/keys",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|description": "description",
+            "JSON|acl": "$acl",
+            "JSON|referers": "referers",
+            "String|queryParameters": "queryParameters",
+            "Number|validity": "validity",
+            "Number|maxHitsPerQuery": "maxHitsPerQuery"
+        }
+    },
+    "updateIndexSpecificApiKey": {
+        "url": "/1/indexes/:indexName/keys/:key",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|key": "$!key",
+            "String|indexName": "$!indexName",
+            "String|description": "description",
+            "JSON|acl": "$acl",
+            "JSON|referers": "referers",
+            "String|queryParameters": "queryParameters",
+            "Number|validity": "validity",
+            "Number|maxHitsPerQuery": "maxHitsPerQuery"
+        }
+    },
+    "getIndexSpecificApiKeys": {
+        "url": "/ /1/indexes/:indexName/keys",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName"
+        }
+    },
+    "getIndexApiKeysForAllIndexes": {
+        "url": "/1/indexes/*/keys",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId"
+        }
+    },
+    "getIndexSpecificApiKeyRights": {
+        "url": "/1/indexes/:indexName/keys/:key",
+        "method": "GET",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|key": "$!key"
+        }
+    },
+    "deleteIndexSpecificApiKey": {
+        "url": "/1/indexes/:indexName/keys/:key",
+        "method": "DELETE",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|key": "$!key"
+        }
+    },
+    "searchFacetValues": {
+        "url": "/1/indexes/:indexName/facets/:facetName/query",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|facetName": "$!facetName",
+            "JSON|params": "$params"
+        }
+    }
+}
