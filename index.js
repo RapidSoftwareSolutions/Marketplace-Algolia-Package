@@ -67,7 +67,7 @@ for(let func in control) {
 
             method == 'GET' || method == 'DELETE' ? options.query = opts : options.body = opts;
             //options.isRawBody = method == 'POST' || method == 'PUT';
-            options.method    = method;
+            options.method = method;
 
             response              = yield api.request(options);
             r.callback            = 'success';

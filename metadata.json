@@ -532,8 +532,114 @@
       ]
     },
     {
+      "name": "updateRegularSynonymSet",
+      "description": "Update a new regular synonym set",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key."
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID."
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index name.",
+          "required": true
+        },
+        {
+          "name": "objectId",
+          "type": "String",
+          "info": "Object ID.",
+          "required": true
+        },
+        {
+          "name": "forwardToSlave",
+          "type": "Boolean",
+          "info": "Push the new/updated synonyms set to all slave indices",
+          "required": false
+        },
+        {
+          "name": "synonyms",
+          "type": "JSON",
+          "info": "Array of synonym strings",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
       "name": "createOnwWaySynonymSet",
       "description": "Create a new one-way synonym set",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key."
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID."
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index name.",
+          "required": true
+        },
+        {
+          "name": "objectId",
+          "type": "String",
+          "info": "Object ID.",
+          "required": true
+        },
+        {
+          "name": "forwardToSlave",
+          "type": "Boolean",
+          "info": "Push the new/updated synonyms set to all slave indices",
+          "required": false
+        },
+        {
+          "name": "input",
+          "type": "String",
+          "info": "Let’s take an example. When a user searches for “tablet”, you want them to be able to find iPads and Galaxy Note tablets alike, but you might not want Android tablets to show up when they search for “iPad”. To do this, you would create a one-way synonym record between tablet (as input) and ipad, galaxy note (as synonyms). When the user types in “tablet”, records containing “iPad” and “Galaxy Note” will be returned. However records containing only “tablet” or “Galaxy Note” won’t be returned if he searches for “iPad”.",
+          "required": true
+        },
+        {
+          "name": "synonyms",
+          "type": "JSON",
+          "info": "Array of synonym strings",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
+      "name": "updateOnwWaySynonymSet",
+      "description": "Update a new one-way synonym set",
       "args": [
         {
           "name": "apiKey",
@@ -650,8 +756,126 @@
       ]
     },
     {
+      "name": "updateAlternativeCorrectionSynonymSet",
+      "description": "Update a new alternative correction synonym set",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key."
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID."
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index name.",
+          "required": true
+        },
+        {
+          "name": "objectId",
+          "type": "String",
+          "info": "Object ID.",
+          "required": true
+        },
+        {
+          "name": "forwardToSlave",
+          "type": "Boolean",
+          "info": "Push the new/updated synonyms set to all slave indices",
+          "required": false
+        },
+        {
+          "name": "type",
+          "type": "String",
+          "info": "Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`. See README for more info.",
+          "required": true
+        },
+        {
+          "name": "word",
+          "type": "String",
+          "info": "Word to add alternative synonyms collection for",
+          "required": true
+        },
+        {
+          "name": "corrections",
+          "type": "JSON",
+          "info": "Array of corrections strings.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
       "name": "createPlaceholderSynonymSet",
       "description": "Create a new placeholder correction synonym set",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key."
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID."
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index name.",
+          "required": true
+        },
+        {
+          "name": "objectId",
+          "type": "String",
+          "info": "Object ID.",
+          "required": true
+        },
+        {
+          "name": "forwardToSlave",
+          "type": "Boolean",
+          "info": "Push the new/updated synonyms set to all slave indices",
+          "required": false
+        },
+        {
+          "name": "placeholder",
+          "type": "String",
+          "info": "Word to add placeholder collection for",
+          "required": true
+        },
+        {
+          "name": "replacements",
+          "type": "JSON",
+          "info": "Array of replacements strings",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
+      "name": "updatePlaceholderSynonymSet",
+      "description": "Update a new placeholder correction synonym set",
       "args": [
         {
           "name": "apiKey",

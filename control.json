@@ -128,7 +128,38 @@
             "type": "synonym"
         }
     },
+    "updateRegularSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "JSON|synonyms": "$synonyms"
+        },
+        "values": {
+            "type": "synonym"
+        }
+    },
     "createOnwWaySynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|input": "$input",
+            "JSON|synonyms": "$synonyms"
+        },
+        "values": {
+            "type": "onewaysynonym"
+        }
+    },
+    "updateOnwWaySynonymSet": {
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
@@ -158,7 +189,37 @@
             "JSON|corrections": "$corrections"
         }
     },
+    "updateAlternativeCorrectionSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|type": "$type",
+            "String|word": "$word",
+            "JSON|corrections": "$corrections"
+        }
+    },
     "createPlaceholderSynonymSet": {
+        "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
+        "method": "PUT",
+        "args": {
+            "credentials|apiKey": "!$apiKey",
+            "credentials|appId": "!$appId",
+            "String|indexName": "$!indexName",
+            "String|objectId": "$!objectId",
+            "Boolean|forwardToSlave": "!forwardToSlave",
+            "String|placeholder": "$placeholder",
+            "JSON|replacements": "$replacements"
+        },
+        "values": {
+            "type": "placeholder"
+        }
+    },
+    "updatePlaceholderSynonymSet": {
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
