@@ -4,7 +4,8 @@ The Algolia API includes autocomplete functionality and an instant results displ
 * Credentials: apiKey, appId
 
 ## How to get credentials: 
-To do
+0. Item one 
+1. Item two 
 
 ## Algolia.getLogs
 Return last logs.
@@ -132,8 +133,33 @@ Create a new regular synonym set
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | synonyms      | JSON       | Array of synonym strings
 
+## Algolia.updateRegularSynonymSet
+Update a new regular synonym set
+
+| Field         | Type       | Description
+|---------------|------------|----------
+| apiKey        | credentials| Algolia Application Key.
+| appId         | credentials| Algolia Application ID.
+| indexName     | String     | Index name.
+| objectId      | String     | Object ID.
+| forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
+| synonyms      | JSON       | Array of synonym strings
+
 ## Algolia.createOnwWaySynonymSet
 Create a new one-way synonym set
+
+| Field         | Type       | Description
+|---------------|------------|----------
+| apiKey        | credentials| Algolia Application Key.
+| appId         | credentials| Algolia Application ID.
+| indexName     | String     | Index name.
+| objectId      | String     | Object ID.
+| forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
+| input         | String     | Let’s take an example. When a user searches for “tablet”, you want them to be able to find iPads and Galaxy Note tablets alike, but you might not want Android tablets to show up when they search for “iPad”. To do this, you would create a one-way synonym record between tablet (as input) and ipad, galaxy note (as synonyms). When the user types in “tablet”, records containing “iPad” and “Galaxy Note” will be returned. However records containing only “tablet” or “Galaxy Note” won’t be returned if he searches for “iPad”.
+| synonyms      | JSON       | Array of synonym strings
+
+## Algolia.updateOnwWaySynonymSet
+Update a new one-way synonym set
 
 | Field         | Type       | Description
 |---------------|------------|----------
@@ -159,8 +185,35 @@ Create a new alternative correction synonym set
 | word          | String     | Word to add alternative synonyms collection for
 | corrections   | JSON       | Array of corrections strings.
 
+## Algolia.updateAlternativeCorrectionSynonymSet
+Update a new alternative correction synonym set
+
+| Field         | Type       | Description
+|---------------|------------|----------
+| apiKey        | credentials| Algolia Application Key.
+| appId         | credentials| Algolia Application ID.
+| indexName     | String     | Index name.
+| objectId      | String     | Object ID.
+| forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
+| type          | String     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`. See README for more info.
+| word          | String     | Word to add alternative synonyms collection for
+| corrections   | JSON       | Array of corrections strings.
+
 ## Algolia.createPlaceholderSynonymSet
 Create a new placeholder correction synonym set
+
+| Field         | Type       | Description
+|---------------|------------|----------
+| apiKey        | credentials| Algolia Application Key.
+| appId         | credentials| Algolia Application ID.
+| indexName     | String     | Index name.
+| objectId      | String     | Object ID.
+| forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
+| placeholder   | String     | Word to add placeholder collection for
+| replacements  | JSON       | Array of replacements strings
+
+## Algolia.updatePlaceholderSynonymSet
+Update a new placeholder correction synonym set
 
 | Field         | Type       | Description
 |---------------|------------|----------
