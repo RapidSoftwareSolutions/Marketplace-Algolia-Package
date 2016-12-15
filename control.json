@@ -57,7 +57,7 @@
         "args": {
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
-            "String|key": "$key"
+            "String|key": "$!key"
         }
     },
     "deleteGlobalApiKey": {

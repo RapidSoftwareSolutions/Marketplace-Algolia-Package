@@ -177,7 +177,7 @@
           "name": "acl",
           "type": "JSON",
           "info": "Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`",
-          "required": true
+          "required": false
         },
         {
           "name": "indexes",
