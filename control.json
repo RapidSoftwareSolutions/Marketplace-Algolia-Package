@@ -52,7 +52,7 @@
         }
     },
     "getGlobalApiKeyRights": {
-        "url": "/GET",
+        "url": "GET",
         "method": "/1/keys/:key",
         "args": {
             "credentials|apiKey": "$!apiKey",
