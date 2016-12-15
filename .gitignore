@@ -3,3 +3,4 @@ test/rapid.*
 test/*.json
 generate.js
 ctrl_metadata.json
+*.log

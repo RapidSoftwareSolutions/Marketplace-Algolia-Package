@@ -930,44 +930,6 @@
       ]
     },
     {
-      "name": "addMultipleSynonyms",
-      "description": "Use the batch method to send several synonyms objects at once, and to replace a full set of synonyms on a production index.",
-      "args": [
-        {
-          "name": "apiKey",
-          "type": "credentials",
-          "info": "Algolia Application Key."
-        },
-        {
-          "name": "appId",
-          "type": "credentials",
-          "info": "Algolia Application ID."
-        },
-        {
-          "name": "indexName",
-          "type": "String",
-          "info": "Index name.",
-          "required": true
-        },
-        {
-          "name": "synonyms",
-          "type": "JSON",
-          "info": "JSON Array of synonyms Objects. See README for example.",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "success",
-          "info": "Success"
-        },
-        {
-          "name": "error",
-          "info": "Error"
-        }
-      ]
-    },
-    {
       "name": "getIndexes",
       "description": "This command lists all your existing indexes.",
       "args": [

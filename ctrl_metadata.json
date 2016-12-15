@@ -480,30 +480,6 @@
       "required": true
     }]
   }, {
-    "name": "addMultipleSynonyms",
-    "method": "POST",
-    "url": "/1/indexes/:indexName/synonyms/batch",
-    "description": "Use the batch method to send several synonyms objects at once, and to replace a full set of synonyms on a production index.",
-    "args": [{
-      "name": "apiKey",
-      "type": "credentials",
-      "info": ""
-    }, {
-      "name": "appId",
-      "type": "credentials",
-      "info": ""
-    }, {
-      "name": "indexName",
-      "type": "String",
-      "info": "Index name.",
-      "required": true
-    }, {
-      "name": "synonyms",
-      "type": "JSON",
-      "info": "JSON Array of synonyms Objects. See README for example.",
-      "required": true
-    }]
-  }, {
     "name": "getIndexes",
     "method": "GET",
     "url": "/1/indexes",
@@ -799,29 +775,10 @@
       "info": "Index name to clear",
       "required": true
     }]
-  }, {
-    "name": "queryMultipleIndexes",
-    "method": "POST",
-    "url": "/1/indexes/*/queries",
-    "description": "This method allows to query multiple indexes with one API call. See README for info and examples.",
-    "args": [{
-      "name": "apiKey",
-      "type": "credentials",
-      "info": ""
-    }, {
-      "name": "appId",
-      "type": "credentials",
-      "info": ""
-    }, {
-      "name": "data",
-      "type": "JSON",
-      "info": "Request data. See README for more info.",
-      "required": true
-    }]
-  }, {
+  },  {
     "name": "addSingleObjectToIndex",
     "method": "POST",
-    "url": "/1/indexes/:indexName/:objectId",
+    "url": "/1/indexes/:indexName",
     "description": "This method adds one object in the index with automatic assignation of `objectId`.",
     "args": [{
       "name": "apiKey",

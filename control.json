@@ -3,8 +3,8 @@
         "url": "/1/logs",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "Number|offset": "offset",
             "Number|length": "length",
             "String|type": "type"
@@ -14,8 +14,8 @@
         "url": "/1/keys",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "Number|validity": "validity",
             "Number|maxQueriesPerIPPerHour": "maxQueriesPerIPPerHour",
             "Number|maxHitsPerQuery": "maxHitsPerQuery",
@@ -30,8 +30,8 @@
         "url": "/1/keys/:key",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|key": "!key",
             "Number|validity": "validity",
             "Number|maxQueriesPerIPPerHour": "maxQueriesPerIPPerHour",
@@ -47,16 +47,16 @@
         "url": "/1/keys",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId"
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId"
         }
     },
     "getGlobalApiKeyRights": {
         "url": "/GET",
         "method": "/1/keys/:key",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|key": "$key"
         }
     },
@@ -64,8 +64,8 @@
         "url": "/1/keys/:key",
         "method": "DELETE",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|key": "$!key"
         }
     },
@@ -73,8 +73,8 @@
         "url": "/ /1/indexes/:indexName/synonyms/:objectId",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId"
         }
@@ -83,8 +83,8 @@
         "url": "/ /1/indexes/:indexName/synonyms/:objectId",
         "method": "DELETE",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlaves": "forwardToSlaves"
@@ -94,8 +94,8 @@
         "url": "/1/indexes/:indexName/synonyms/clear",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "Boolean|forwardToSlaves": "forwardToSlaves"
         }
@@ -104,8 +104,8 @@
         "url": "/1/indexes/:indexName/synonyms/search",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|query": "query",
             "String|type": "type",
@@ -117,8 +117,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -132,8 +132,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -147,8 +147,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -163,8 +163,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -179,8 +179,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -193,8 +193,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -207,8 +207,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -223,8 +223,8 @@
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
             "Boolean|forwardToSlave": "!forwardToSlave",
@@ -235,30 +235,20 @@
             "type": "placeholder"
         }
     },
-    "addMultipleSynonyms": {
-        "url": "/1/indexes/:indexName/synonyms/batch",
-        "method": "POST",
-        "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
-            "String|indexName": "$!indexName",
-            "JSON|synonyms": "$synonyms"
-        }
-    },
     "getIndexes": {
         "url": "/1/indexes",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId"
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId"
         }
     },
     "querySingleIndex": {
         "url": "/1/indexes/:indexName",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|query": "query",
             "String|queryType": "queryType",
@@ -311,8 +301,8 @@
         "url": "/1/indexes/:indexName",
         "method": "DELETE",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName"
         }
     },
@@ -320,48 +310,39 @@
         "url": "/1/indexes/:indexName/clear",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName"
         }
     },
-    "queryMultipleIndexes": {
-        "url": "/1/indexes/*/queries",
-        "method": "POST",
-        "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
-            "JSON|data": "$data"
-        }
-    },
     "addSingleObjectToIndex": {
-        "url": "/1/indexes/:indexName/:objectId",
+        "url": "/1/indexes/:indexName",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
-            "JSON|object": "$!object"
+            "Raw|object": "$!object"
         }
     },
     "updateSingleObject": {
         "url": "/1/indexes/:indexName/:objectId",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId",
-            "JSON|object": "$!object"
+            "Raw|object": "$!object"
         }
     },
     "partiallyUpdateObject": {
         "url": "/1/indexes/:indexName/objectId/partial",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$objectId",
             "JSON|object": "$object",
@@ -372,8 +353,8 @@
         "url": "/1/indexes/:indexName/:objectId",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId"
         }
@@ -382,8 +363,8 @@
         "url": "/1/indexes/*/objects",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "JSON|requests": "$requests"
         }
     },
@@ -391,8 +372,8 @@
         "url": "/1/indexes/:indexName/:objectId",
         "method": "DELETE",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|objectId": "$!objectId"
         }
@@ -401,8 +382,8 @@
         "url": "/1/indexes/:indexName/settings",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "JSON|attributesToIndex": "attributesToIndex",
             "String|numericAttributesToIndex": "numericAttributesToIndex",
@@ -449,8 +430,8 @@
         "url": "/1/indexes/:indexName/browse",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName"
         }
     },
@@ -458,8 +439,8 @@
         "url": "/1/indexes/:indexName/settings?forwardToSlaves=:forwardToSlaves",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "Boolean|forwardToSlaves": "!forwardToSlaves",
             "JSON|attributesToIndex": "attributesToIndex",
@@ -507,8 +488,8 @@
         "url": "/1/indexes/:indexName/operation",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|destination": "$destination"
         },
@@ -520,8 +501,8 @@
         "url": "/1/indexes/:indexName/operation",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|destination": "$destination"
         },
@@ -533,8 +514,8 @@
         "url": "/1/indexes/:indexName/task/:task",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|task": "$!task"
         }
@@ -543,8 +524,8 @@
         "url": "/1/indexes/:indexName/keys",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|description": "description",
             "JSON|acl": "$acl",
@@ -558,8 +539,8 @@
         "url": "/1/indexes/:indexName/keys/:key",
         "method": "PUT",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|key": "$!key",
             "String|indexName": "$!indexName",
             "String|description": "description",
@@ -574,8 +555,8 @@
         "url": "/ /1/indexes/:indexName/keys",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName"
         }
     },
@@ -583,16 +564,16 @@
         "url": "/1/indexes/*/keys",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId"
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId"
         }
     },
     "getIndexSpecificApiKeyRights": {
         "url": "/1/indexes/:indexName/keys/:key",
         "method": "GET",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|key": "$!key"
         }
@@ -601,8 +582,8 @@
         "url": "/1/indexes/:indexName/keys/:key",
         "method": "DELETE",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|key": "$!key"
         }
@@ -611,8 +592,8 @@
         "url": "/1/indexes/:indexName/facets/:facetName/query",
         "method": "POST",
         "args": {
-            "credentials|apiKey": "!$apiKey",
-            "credentials|appId": "!$appId",
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|facetName": "$!facetName",
             "JSON|params": "$params"
