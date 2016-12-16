@@ -2355,7 +2355,7 @@
           "name": "acl",
           "type": "JSON",
           "info": "JSON Array of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
-          "required": true
+          "required": false
         },
         {
           "name": "referers",
