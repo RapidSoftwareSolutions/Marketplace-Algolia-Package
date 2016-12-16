@@ -1322,38 +1322,6 @@
       ]
     },
     {
-      "name": "queryMultipleIndexes",
-      "description": "This method allows to query multiple indexes with one API call. See README for info and examples.",
-      "args": [
-        {
-          "name": "apiKey",
-          "type": "credentials",
-          "info": "Algolia Application Key."
-        },
-        {
-          "name": "appId",
-          "type": "credentials",
-          "info": "Algolia Application ID."
-        },
-        {
-          "name": "data",
-          "type": "JSON",
-          "info": "Request data. See README for more info.",
-          "required": true
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "success",
-          "info": "Success"
-        },
-        {
-          "name": "error",
-          "info": "Error"
-        }
-      ]
-    },
-    {
       "name": "addSingleObjectToIndex",
       "description": "This method adds one object in the index with automatic assignation of `objectId`.",
       "args": [

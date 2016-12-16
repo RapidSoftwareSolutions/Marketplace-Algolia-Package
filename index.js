@@ -49,6 +49,9 @@ for(let func in control) {
 
         req.body.args = lib.clearArgs(req.body.args);
 
+        if(!req.body.args['forwardToSlaves']) 
+            req.body.args['forwardToSlaves'] = false;
+
         try {
             let api = new API(endpoint + url, {
                 headers: {
