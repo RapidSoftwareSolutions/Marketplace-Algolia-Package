@@ -52,8 +52,8 @@
         }
     },
     "getGlobalApiKeyRights": {
-        "url": "GET",
-        "method": "/1/keys/:key",
+        "url": "/1/keys/:key",
+        "method": "GET",
         "args": {
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
