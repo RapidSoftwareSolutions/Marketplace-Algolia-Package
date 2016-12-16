@@ -596,7 +596,7 @@
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|facetName": "$!facetName",
-            "JSON|params": "$params"
+            "String|params": "$params"
         }
     }
 }

@@ -755,7 +755,7 @@ This method searches for values of a given facet, optionally restricting the ret
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index Name
 | facetName    | String     | Facet Name
-| params       | JSON       | params (string): Search parameters. You must specify at least the facetQuery parameter, which contains the text that will be searched inside the facet's values. You may also specify any number of other regular search parameters. They will apply to objects in the index.
+| params       | String     | params (string): Search parameters. You must specify at least the facetQuery parameter, which contains the text that will be searched inside the facet's values. You may also specify any number of other regular search parameters. They will apply to objects in the index.
 
 #### `params` example: 
 ```json

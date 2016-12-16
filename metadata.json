@@ -2555,7 +2555,7 @@
         },
         {
           "name": "params",
-          "type": "JSON",
+          "type": "String",
           "info": "You must specify at least the facetQuery parameter, which contains the text that will be searched inside the facet’s values. You may also specify any number of other regular search parameters. They will apply to objects in the index. See README for more info.",
           "required": true
         }
