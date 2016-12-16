@@ -70,7 +70,7 @@
         }
     },
     "getSingleSynonymsSet": {
-        "url": "/ /1/indexes/:indexName/synonyms/:objectId",
+        "url": "/1/indexes/:indexName/synonyms/:objectId",
         "method": "GET",
         "args": {
             "credentials|apiKey": "$!apiKey",
@@ -80,7 +80,7 @@
         }
     },
     "deleteSingleSynonymsSet": {
-        "url": "/ /1/indexes/:indexName/synonyms/:objectId",
+        "url": "/1/indexes/:indexName/synonyms/:objectId",
         "method": "DELETE",
         "args": {
             "credentials|apiKey": "$!apiKey",
@@ -552,7 +552,7 @@
         }
     },
     "getIndexSpecificApiKeys": {
-        "url": "/ /1/indexes/:indexName/keys",
+        "url": "/1/indexes/:indexName/keys",
         "method": "GET",
         "args": {
             "credentials|apiKey": "$!apiKey",
