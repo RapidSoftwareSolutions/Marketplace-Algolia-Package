@@ -143,7 +143,7 @@
             "type": "synonym"
         }
     },
-    "createOnwWaySynonymSet": {
+    "createOneWaySynonymSet": {
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {
@@ -159,7 +159,7 @@
             "type": "onewaysynonym"
         }
     },
-    "updateOnwWaySynonymSet": {
+    "updateOneWaySynonymSet": {
         "url": "/1/indexes/:indexName/synonyms/:objectId?forwardToSlave=:forwardToSlave",
         "method": "PUT",
         "args": {

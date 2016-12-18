@@ -91,7 +91,7 @@
         {
           "name": "maxHitsPerQuery",
           "type": "Number",
-          "info": "Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited). T",
+          "info": "Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited).",
           "required": false
         },
         {
@@ -582,7 +582,7 @@
       ]
     },
     {
-      "name": "createOnwWaySynonymSet",
+      "name": "createOneWaySynonymSet",
       "description": "Create a new one-way synonym set",
       "args": [
         {
@@ -638,7 +638,7 @@
       ]
     },
     {
-      "name": "updateOnwWaySynonymSet",
+      "name": "updateOneWaySynonymSet",
       "description": "Update a new one-way synonym set",
       "args": [
         {
@@ -1411,7 +1411,7 @@
     },
     {
       "name": "partiallyUpdateObject",
-      "description": "/1/indexes/:indexName/:objectId/partial",
+      "description": "This method updates part of an object (if the object does not exist, it will be created. You can avoid an automatic creation of the object by passing createIfNotExists=false as query argument).",
       "args": [
         {
           "name": "apiKey",

@@ -28,7 +28,7 @@ This method add a new global API key.
 | appId                 | credentials| Algolia Application ID.
 | validity              | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxQueriesPerIPPerHour| Number     | Specify the maximum number of API calls allowed from an IP address per hour.
-| maxHitsPerQuery       | Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited). T
+| maxHitsPerQuery       | Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited).
 | acl                   | JSON       | Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`
 | indexes               | JSON       | Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example "dev_*” matches all indices starting by "dev_” and "*_dev” matches all indices finishing by "_dev”). If the list is empty or not set, the API Key will be valid for all indices.
 | referers              | JSON       | Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
@@ -160,7 +160,7 @@ Create a new regular synonym set
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | synonyms      | JSON       | Array of synonym strings
 
-#### `referers` example:
+#### `synonyms` example:
 ```json
 "synonyms": [ "iphone", "ephone", "aphone", "yphone", "apple phone"]
 ```
@@ -177,12 +177,12 @@ Update a new regular synonym set
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | synonyms      | JSON       | Array of synonym strings
 
-#### `referers` example:
+#### `synonyms` example:
 ```json
 "synonyms": [ "iphone", "ephone", "aphone", "yphone", "apple phone"]
 ```
 
-## Algolia.createOnwWaySynonymSet
+## Algolia.createOnуWaySynonymSet
 Create a new one-way synonym set
 
 | Field         | Type       | Description
@@ -195,12 +195,12 @@ Create a new one-way synonym set
 | input         | String     | Let’s take an example. When a user searches for "tablet”, you want them to be able to find iPads and Galaxy Note tablets alike, but you might not want Android tablets to show up when they search for "iPad”. To do this, you would create a one-way synonym record between tablet (as input) and ipad, galaxy note (as synonyms). When the user types in "tablet”, records containing "iPad” and "Galaxy Note” will be returned. However records containing only "tablet” or "Galaxy Note” won’t be returned if he searches for "iPad”.
 | synonyms      | JSON       | Array of synonym strings
 
-#### `referers` example:
+#### `synonyms` example:
 ```json
 "synonyms": [ "ephone", "aphone", "yphone", "apple phone"]
 ```
 
-## Algolia.updateOnwWaySynonymSet
+## Algolia.updateOnуWaySynonymSet
 Update a new one-way synonym set
 
 | Field         | Type       | Description
@@ -212,7 +212,7 @@ Update a new one-way synonym set
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | input         | String     | Let’s take an example. When a user searches for "tablet”, you want them to be able to find iPads and Galaxy Note tablets alike, but you might not want Android tablets to show up when they search for "iPad”. To do this, you would create a one-way synonym record between tablet (as input) and ipad, galaxy note (as synonyms). When the user types in "tablet”, records containing "iPad” and "Galaxy Note” will be returned. However records containing only "tablet” or "Galaxy Note” won’t be returned if he searches for "iPad”.
 | synonyms      | JSON       | Array of synonym strings
-#### `referers` example:
+#### `synonyms` example:
 ```json
 "synonyms": [ "ephone", "aphone", "yphone", "apple phone"]
 ```
@@ -269,7 +269,7 @@ Create a new placeholder correction synonym set
 | placeholder   | String     | Word to add placeholder collection for
 | replacements  | JSON       | Array of replacements strings
 
-#### `correction` example:
+#### `replacements` example:
 ```json
 "replacements": [ "ephone", "iphone"]
 ```
@@ -286,7 +286,7 @@ Update a new placeholder correction synonym set
 | placeholder   | String     | Word to add placeholder collection for
 | replacements  | JSON       | Array of replacements strings
 
-#### `correction` example:
+#### `replacements` example:
 ```json
 "replacements": [ "ephone", "iphone"]
 ```
@@ -530,9 +530,46 @@ This method retrieve index settings.
 ```json
 "ranking": ["typo", "geo", "words", "custom"]
 ```
-#### `slaves` example:
+#### `customRanking` example:
 ```json
-"slaves": ["index1", "index2"]
+"customRanking": ["desc(population)", "asc(name)"]
+```
+#### `synonyms` example:
+```json
+"synonyms": [ [ "black", "dark" ], [ "small", "little", "mini" ], ... ]
+```
+
+#### `placeholders` example:
+```json
+"placeholders": { "name" : "Apple Store", "address" : "<streetnumber> Opera street, Paris" }
+```
+
+#### `altCorrections` example:
+```json
+"altCorrections": [ 
+	{ "word" : "foot", "correction": "feet", "nbTypos": 1}, 
+	{ "word": "feet", "correction": "foot", "nbTypos": 1}
+]
+```
+
+#### `disableTypoToleranceOnWords` example:
+```json
+"disableTypoToleranceOnWords": ["word2", "word1"]`
+```
+
+#### `disableTypoToleranceOnAttributes`, `disablePrefixOnAttributes`, `disableExactOnAttributes`, `attributesToHighlight`, `attributesToSnippet`, `attributesToRetrieve`, `attributesToHighlight`, `attributesToSnippet` example:
+```json
+"...": ["attr1", "attr2"]`
+```
+
+#### `optionalWords` example:
+```json
+"optionalWords": ["word2", "word1"]`
+```
+
+#### `alternativesAsExact` example:
+```json
+"alternativesAsExact": ["ignorePlurals", "singleWordSynonym", ]
 ```
 
 ## Algolia.getIndexContent
@@ -593,6 +630,24 @@ This method updates part of index settings, the list of attributes and their beh
 | exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
 | alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula. 
 
+
+#### `attributesToIndex` example:
+```json
+"attributesToIndex": ["title,alternative_title", "text"]`
+```
+
+#### `attributesForFaceting` example:
+```json
+"attributesForFaceting": ["filterOnly(attributeName)"]
+```
+#### `ranking` example:
+```json
+"ranking": ["typo", "geo", "words", "custom"]
+```
+#### `customRanking` example:
+```json
+"customRanking": ["desc(population)", "asc(name)"]
+```
 #### `synonyms` example:
 ```json
 "synonyms": [ [ "black", "dark" ], [ "small", "little", "mini" ], ... ]
@@ -616,7 +671,7 @@ This method updates part of index settings, the list of attributes and their beh
 "disableTypoToleranceOnWords": ["word2", "word1"]`
 ```
 
-#### `disableTypoToleranceOnAttributes`, `disablePrefixOnAttributes`, `disableExactOnAttributes`, `attributesToHighlight`, `attributesToSnippet` example:
+#### `disableTypoToleranceOnAttributes`, `disablePrefixOnAttributes`, `disableExactOnAttributes`, `attributesToHighlight`, `attributesToSnippet`, `attributesToRetrieve`, `attributesToHighlight`, `attributesToSnippet` example:
 ```json
 "...": ["attr1", "attr2"]`
 ```
@@ -695,7 +750,8 @@ This method update a key that can access to this index.
 | key            | String     | Key to update
 | indexName      | String     | Used to identify a key.
 | description    | String     | Used to identify a key.
-| acl            | JSON       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right); **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes| referers| JSON       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
+| acl            | JSON       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right); **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes
+| referers| JSON       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
 | queryParameters| String     | Force some query parameters to be applied foreach query made with this api key. You can force all query parameters like: "typoTolerance=strict&ignorePlurals=false&filters=rights:public”. The parameters use the url string format.
 | validity       | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxHitsPerQuery| Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited). This parameter can be used to protect you from attempts at retrieving your entire content by massively querying the index.
