@@ -412,7 +412,7 @@ This method adds or replaces an object (if the object does not exist, it will be
 ```
 
 ## Algolia.partiallyUpdateObject
-/1/indexes/:indexName/:objectId/partial
+This method updates part of an object (if the object does not exist, it will be created. You can avoid an automatic creation of the object by passing createIfNotExists=false as query argument).
 
 | Field            | Type       | Description
 |------------------|------------|----------

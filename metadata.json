@@ -2358,7 +2358,7 @@
           "required": false
         },
         {
-          "name": "referers",
+          "name": "repartiallyUpdateObjectferers",
           "type": "JSON",
           "info": "JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*.algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
           "required": false
