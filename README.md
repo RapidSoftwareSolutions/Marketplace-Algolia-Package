@@ -1,3 +1,5 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/Algolia/functions?utm_source=RapidAPIGitHub_AlgoliaFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
 # Algolia Package
 The Algolia API includes autocomplete functionality and an instant results display.
 * Domain: algolia.com
