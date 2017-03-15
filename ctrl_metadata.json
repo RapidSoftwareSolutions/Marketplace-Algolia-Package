@@ -794,11 +794,6 @@
       "info": "Index name to add object for.",
       "required": true
     }, {
-      "name": "objectId",
-      "type": "String",
-      "info": "Index name to add object for.",
-      "required": true
-    }, {
       "name": "object",
       "type": "JSON",
       "info": "Object body. See README for more info.",
