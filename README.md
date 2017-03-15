@@ -381,7 +381,6 @@ This method adds one object in the index with automatic assignation of `objectId
 | apiKey       | credentials| Algolia Application Key.
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to add object for.
-| objectId     | String     | Index name to add object for.
 | object       | JSON       | Object body. 
 
 #### `object` format:
