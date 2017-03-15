@@ -322,7 +322,6 @@
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
-            "String|objectId": "$!objectId",
             "Raw|object": "$!object"
         }
     },
