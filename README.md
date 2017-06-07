@@ -10,6 +10,15 @@ The Algolia API includes autocomplete functionality and an instant results displ
 2. Go to API [Keys section](https://www.algolia.com/api-keys)
 3. Use your Application ID as `appId` and Admin API Key as `apiKey`
 
+## Custom datatypes:
+ |Datatype|Description|Example
+ |--------|-----------|----------
+ |Datepicker|String which includes date and time|```2016-05-28 00:00:00```
+ |Map|String which includes latitude and longitude coma separated|```50.37, 26.56```
+ |List|Simple array|```["123", "sample"]```
+ |Select|String with predefined values|```sample```
+ |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+
 ## Algolia.getLogs
 Return last logs.
 
@@ -19,7 +28,7 @@ Return last logs.
 | appId | credentials| Algolia Application ID.
 | offset| Number     | Specify the first entry to retrieve (0-based, 0 is the most recent log entry). Defaults to 0.
 | length| Number     | Specify the maximum number of entries to retrieve starting at offset. Defaults to 10. Maximum allowed value: 1000.
-| type  | String     | Specify the type of logs to retrieve. This parameter is useful for debugging, especially when it is difficult to locate errors among many API calls:`all` (default): Retrieve all logs; `query`: Retrieve only the queries; `build`: Retrieve only the build operations; `error`: Retrieve only the errors
+| type  | Select     | Specify the type of logs to retrieve. This parameter is useful for debugging, especially when it is difficult to locate errors among many API calls:`all` (default): Retrieve all logs; `query`: Retrieve only the queries; `build`: Retrieve only the build operations; `error`: Retrieve only the errors
 
 ## Algolia.addGlobalApiKey
 This method add a new global API key.
@@ -31,9 +40,9 @@ This method add a new global API key.
 | validity              | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxQueriesPerIPPerHour| Number     | Specify the maximum number of API calls allowed from an IP address per hour.
 | maxHitsPerQuery       | Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited).
-| acl                   | JSON       | Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`
-| indexes               | JSON       | Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example "dev_*” matches all indices starting by "dev_” and "*_dev” matches all indices finishing by "_dev”). If the list is empty or not set, the API Key will be valid for all indices.
-| referers              | JSON       | Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
+| acl                   | List       | Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`
+| indexes               | List       | Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example "dev_*” matches all indices starting by "dev_” and "*_dev” matches all indices finishing by "_dev”). If the list is empty or not set, the API Key will be valid for all indices.
+| referers              | List       | Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
 | queryParameters       | String     | Force some query parameters to be applied foreach query made with this api key. You can force all query parameters like: "typoTolerance=strict&ignorePlurals=false&filters=rights:public”. The parameters use the url string format.
 | description           | String     | Used to identify a key.
 
@@ -61,9 +70,9 @@ This method update a global API key.
 | validity              | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxQueriesPerIPPerHour| Number     | Specify the maximum number of API calls allowed from an IP address per hour.
 | maxHitsPerQuery       | Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited).
-| acl                   | JSON       | Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`
-| indexes               | JSON       | Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example "dev_*” matches all indices starting by "dev_” and "*_dev” matches all indices finishing by "_dev”). If the list is empty or not set, the API Key will be valid for all indices.
-| referers              | JSON       | Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
+| acl                   | List       | Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`
+| indexes               | List       | Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example "dev_*” matches all indices starting by "dev_” and "*_dev” matches all indices finishing by "_dev”). If the list is empty or not set, the API Key will be valid for all indices.
+| referers              | List       | Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
 | queryParameters       | String     | Force some query parameters to be applied foreach query made with this api key. You can force all query parameters like: "typoTolerance=strict&ignorePlurals=false&filters=rights:public”. The parameters use the url string format.
 | description           | String     | Used to identify a key.
 
@@ -146,7 +155,7 @@ Search/browse all synonyms, possibly filtered by type
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to search synonyms for
 | query        | String     | The query string used to search for specific synonyms. Use an empty string (default) to browse all synonyms.
-| type         | String     | Only search within specific types of synonyms. Multiple types can be specified using a comma-separated list. Possible values: `synonym`, `onewaysynonym`, `altcorrection1`, `altcorrection2`, `placeholder`
+| type         | List     | Only search within specific types of synonyms. Multiple types can be specified using a comma-separated list. Possible values: `synonym`, `onewaysynonym`, `altcorrection1`, `altcorrection2`, `placeholder`
 | page         | String     | The page to fetch (first page is 0).
 | hitsPerPage  | String     | The number of synonyms to fetch per page.
 
@@ -160,7 +169,7 @@ Create a new regular synonym set
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| synonyms      | JSON       | Array of synonym strings
+| synonyms      | List       | Array of synonym strings
 
 #### `synonyms` example:
 ```json
@@ -177,7 +186,7 @@ Update a new regular synonym set
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| synonyms      | JSON       | Array of synonym strings
+| synonyms      | List       | Array of synonym strings
 
 #### `synonyms` example:
 ```json
@@ -235,9 +244,9 @@ The engine would then account for one or two typos for records containing "iPad�
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| type          | String     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
+| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
 | word          | String     | Word to add alternative synonyms collection for
-| corrections   | JSON       | Array of corrections strings. Example: `["ipad"]`
+| corrections   | List       | Array of corrections strings. Example: `["ipad"]`
 
 ## Algolia.updateAlternativeCorrectionSynonymSet
 Update a new alternative correction synonym set
@@ -249,9 +258,9 @@ Update a new alternative correction synonym set
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| type          | String     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
+| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
 | word          | String     | Word to add alternative synonyms collection for
-| corrections   | JSON       | Array of corrections strings.
+| corrections   | List       | Array of corrections strings.
 
 #### `correction` example:
 ```json
@@ -269,7 +278,7 @@ Create a new placeholder correction synonym set
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | placeholder   | String     | Word to add placeholder collection for
-| replacements  | JSON       | Array of replacements strings
+| replacements  | List       | Array of replacements strings
 
 #### `replacements` example:
 ```json
@@ -286,7 +295,7 @@ Update a new placeholder correction synonym set
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
 | placeholder   | String     | Word to add placeholder collection for
-| replacements  | JSON       | Array of replacements strings
+| replacements  | List       | Array of replacements strings
 
 #### `replacements` example:
 ```json
@@ -310,8 +319,8 @@ Return objects that match the query.
 | appId                           | credentials| Algolia Application ID.
 | indexName                       | String     | Inex name to retrieve.
 | query                           | String     | The instant-search query string, all words of the query are interpreted as prefixes (for example "John Mc” will match "John Mccamey” and "Johnathan Mccamey”). If no query parameter is set, retrieves all objects.
-| queryType                       | String     | Selects how the query words are interpreted: `prefixAll`, `prefixLast`, `prefixNone`
-| typoTolerance                   | String     | This setting has four different options: `true` (default), `false`, `min`: keep only results with the lowest number of typo, `strict`: if there is a match without typo, then all results with 2 typos or more will be removed.
+| queryType                       | Select     | Selects how the query words are interpreted: `prefixAll`, `prefixLast`, `prefixNone`
+| typoTolerance                   | Select     | This setting has four different options: `true` (default), `false`, `min`: keep only results with the lowest number of typo, `strict`: if there is a match without typo, then all results with 2 typos or more will be removed.
 | minWordSizefor1Typo             | Number     | The minimum number of characters in a query word to accept one typo in this word. Defaults to 4.
 | minWordSizefor2Typos            | Number     | The minimum number of characters in a query word to accept two typos in this word. Defaults to 8.
 | allowTyposOnNumericTokens       | String     | If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to true.
@@ -333,7 +342,7 @@ Return objects that match the query.
 | hitsPerPage                     | Number     | Pagination parameter used to select the number of hits per page. Defaults to 20.
 | offset                          | Number     | Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
 | length                          | Number     | Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
-| attributesToRetrieve            | String     | List of object attributes you want to retrieve (let you minimize the answer size). List of object attributes you want to retrieve (let you minimize the answer size). Attributes are separated with a comma (for example "name,address" ), you can also use a JSON string array encoding (for example encodeURIComponent('["name","address"]') ). By default, all attributes are retrieved. You can also use * to retrieve all values when an attributesToRetrieve setting is specified for your index.
+| attributesToRetrieve            | List     | List of object attributes you want to retrieve (let you minimize the answer size). List of object attributes you want to retrieve (let you minimize the answer size). Attributes are separated with a comma (for example "name,address" ), you can also use a JSON string array encoding (for example encodeURIComponent('["name","address"]') ). By default, all attributes are retrieved. You can also use * to retrieve all values when an attributesToRetrieve setting is specified for your index.
 | attributesToHighlight           | String     | List of attributes you want to highlight according to the query. Attributes are separated by a comma. You can also use a JSON string array encoding (for example `encodeURIComponent('["name","address"]') )`. If an attribute has no match for the query, the raw value is returned. By default all indexed text attributes are highlighted. You can use * if you want to highlight all textual attributes. Numerical attributes are not highlighted. A matchLevel is returned for each highlighted attribute and can contain: `full`: if all the query terms were found in the attribute; `partial`: if only some of the query terms were found; `none`: if none of the query terms were found
 | attributesToSnippet             | String     | List of attributes to snippet alongside the number of words to return (syntax is 'attributeName:nbWords').Attributes are separated by a comma (Example: `attributesToSnippet=name:10`, `content:10` ). You can also use a JSON string array encoding (Example: `encodeURIComponent('["name:10","content:10"]'` )) By default no snippet is computed.
 | getRankingInfo                  | Number     | If set to 1, the result hits will contain ranking information in _rankingInfo attribute.
@@ -450,7 +459,7 @@ This method allows to retrieve several objects with one API call.
 |-------------|------------|----------
 | apiKey      | credentials| Algolia Application Key.
 | appId       | credentials| Algolia Application ID.
-| requests    | JSON       | JSON Array of Objects. 
+| requests    | Array       | JSON Array of Objects.
 
 #### `requests` format
 ```json
@@ -478,11 +487,11 @@ This method retrieve index settings.
 | apiKey                          | credentials| Algolia Application Key.
 | appId                           | credentials| Algolia Application ID.
 | indexName                       | String     | Index name to retrieve settings for.
-| attributesToIndex               | JSON       | JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. This parameter has two important uses: __Limit the attributes to index__. For example if you store a binary image in base64, you want to store it and be able to retrieve it but you don’t want to search in the base64 string. __Control part of the ranking__ (see the ranking parameter for full explanation). Matches in attributes at the beginning of the list will be considered more important than matches in attributes further down the list. In one attribute, matching text at the beginning of the attribute will be considered more important than text after, you can disable this behavior if you add your attribute inside unordered(AttributeName), for example: attributesToIndex:["title", "unordered(text)"]._NOTE:_You can decide to have the same priority for several attributes by passing them in the same string using comma as separator. For example:  title and alternative_title have the same priority in this example: attributesToIndex:`["title,alternative_title", "text"]`
-| numericAttributesToIndex        | String     | All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.
-| attributesForFaceting           | JSON       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
+| attributesToIndex               | List       | JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. This parameter has two important uses: __Limit the attributes to index__. For example if you store a binary image in base64, you want to store it and be able to retrieve it but you don’t want to search in the base64 string. __Control part of the ranking__ (see the ranking parameter for full explanation). Matches in attributes at the beginning of the list will be considered more important than matches in attributes further down the list. In one attribute, matching text at the beginning of the attribute will be considered more important than text after, you can disable this behavior if you add your attribute inside unordered(AttributeName), for example: attributesToIndex:["title", "unordered(text)"]._NOTE:_You can decide to have the same priority for several attributes by passing them in the same string using comma as separator. For example:  title and alternative_title have the same priority in this example: attributesToIndex:`["title,alternative_title", "text"]`
+| numericAttributesToIndex        | List     | All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.
+| attributesForFaceting           | List       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
 | attributeForDistinct            | String     | The attribute name used for the Distinct feature. This feature is similar to the SQL "distinct” keyword: when enabled in query with the distinct=1 parameter, all hits containing a duplicate value for this attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
-| ranking                         | JSON       | Controls the way results are sorted. We have nine available criteria: __`typo`__: sort according to number of typos; __`geo`__: sort according to decreasing distance when performing a geo-location based search; __`words`__: sort according to the number of query words matched by decreasing order. This parameter is useful when you use optionalWords query parameter to have results with the most matched words first; __`proximity`__: sort according to the proximity of query words in hits; __`attribute`__: sort according to the order of attributes defined by attributesToIndex; __`exact`__: if the user query contains one word: sort objects having an attribute that is exactly the query word before others. For example if you search for the "V” TV show, you want to find it with the "V” query and avoid to have all popular TV show starting by the v letter before it if the user query contains multiple words: sort according to the number of words that matched exactly (and not as a prefix); __`custom`__: sort according to a user defined formula set in customRanking attribute; __`asc(attributeName)`__: sort according to a numeric attribute by ascending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); __`desc(attributeName)`__: sort according to a numeric attribute by descending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); The standard order is `["typo”, "geo”, "words”, "proximity”, "attribute”, "exact”, "custom”]`.
+| ranking                         | List       | Controls the way results are sorted. We have nine available criteria: __`typo`__: sort according to number of typos; __`geo`__: sort according to decreasing distance when performing a geo-location based search; __`words`__: sort according to the number of query words matched by decreasing order. This parameter is useful when you use optionalWords query parameter to have results with the most matched words first; __`proximity`__: sort according to the proximity of query words in hits; __`attribute`__: sort according to the order of attributes defined by attributesToIndex; __`exact`__: if the user query contains one word: sort objects having an attribute that is exactly the query word before others. For example if you search for the "V” TV show, you want to find it with the "V” query and avoid to have all popular TV show starting by the v letter before it if the user query contains multiple words: sort according to the number of words that matched exactly (and not as a prefix); __`custom`__: sort according to a user defined formula set in customRanking attribute; __`asc(attributeName)`__: sort according to a numeric attribute by ascending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); __`desc(attributeName)`__: sort according to a numeric attribute by descending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); The standard order is `["typo”, "geo”, "words”, "proximity”, "attribute”, "exact”, "custom”]`.
 | customRanking                   | JSON       | JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]
 | separatorsToIndex               | String     | Specify the separators (punctuation characters) to index. By default, separators are not indexed. Use `+#` to be able to search Google+ or C#.
 | slaves                          | String     | JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.
@@ -501,7 +510,7 @@ This method retrieve index settings.
 | attributesToRetrieve            | JSON       | JSON Array of String. Default list of attributes to retrieve in objects. If set to null, all attributes are retrieved.
 | attributesToHighlight           | JSON       | JSON Array of String. Default list of attributes to highlight. If set to null, all indexed attributes are highlighted.
 | attributesToSnippet             | JSON       | JSON Array of Strings. Default list of attributes to snippet alongside the number of words to return (syntax is ‘attributeName:nbWords’). If set to null, no snippet is computed.
-| queryType                       | String     | Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.
+| queryType                       | Select     | Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.
 | minProximity                    | String     | Configure the precision of the `proximity` ranking criterion. By default, the minimum (and best) proximity value distance between 2 matching words is `1`. Setting it to `2` (or `3`) would allow 1 (or `2`) words to be found between the matching words without degrading the proximity ranking value. Considering the query "javascript framework”, if you set `minProximity=2` the records "JavaScript framework” and "JavaScript charting framework” will get the same proximity score, even if the second one contains a word between the 2 matching words. Defaults to 1. _Note_: the maximum minProximity that can be set is `7`. Above, the engine will consider the proximity rule from the rankignFormula as disabled.
 | highlightPreTag                 | String     | Specify the string that is inserted before the highlighted parts in the query result (defaults to `&lt;em&gt;`).
 | highlightPostTag                | String     | Specify the string that is inserted after the highlighted parts in the query result (defaults to `&lt;/em&gt;`).
@@ -591,12 +600,12 @@ This method updates part of index settings, the list of attributes and their beh
 | appId                           | credentials| Algolia Application ID.
 | indexName                       | String     | Index name to retrieve settings for.
 | forwardToSlaves                 | Boolean    | If this parameter is true, the change is also applied on slaves of this index.
-| attributesToIndex               | JSON       | JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. 
+| attributesToIndex               | List       | JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results.
 | numericAttributesToIndex        | String     | All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.
-| attributesForFaceting           | JSON       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
+| attributesForFaceting           | List       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
 | attributeForDistinct            | String     | The attribute name used for the Distinct feature. This feature is similar to the SQL "distinct” keyword: when enabled in query with the distinct=1 parameter, all hits containing a duplicate value for this attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
 | ranking                         | JSON       | JSON Array of Strings. Controls the way results are sorted. 
-| customRanking                   | JSON       | JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]
+| customRanking                   | List       | JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]
 | separatorsToIndex               | String     | Specify the separators (punctuation characters) to index. By default, separators are not indexed. Use `+#` to be able to search Google+ or C#.
 | slaves                          | String     | JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.
 | unretrievableAttributes         | String     | JSON Array Of Strings. List of attributes that cannot be retrieved at query time. This feature allows you to have an attribute that is used for indexing and/or ranking but which cannot be retrieved. This setting will be bypassed if the query is done with the ADMIN API key. Defaults to null.
@@ -625,7 +634,7 @@ This method updates part of index settings, the list of attributes and their beh
 | replaceSynonymsInHighlight      | Boolean    | If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.
 | maxValuesPerFacet               | Number     | Limit the number of facet values returned for each facet. For example: maxValuesPerFacet=10 will retrieve max 10 values per facet. Defaults to 100.
 | distinct                        | Number     | Enable the distinct feature (disabled by default) if the attributeForDistinct index setting is set. This feature is similar to the SQL "distinct” keyword: when enabled in a query with the distinct=1 parameter, all hits containing a duplicate value for theattributeForDistinct attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
-| typoTolerance                   | String     | This setting has four different options: `true`, `false`, `min`, `strict`.
+| typoTolerance                   | Select     | This setting has four different options: `true`, `false`, `min`, `strict`.
 | removeStopWords                 | String     | Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a comma separated string with the list of languages you have in your record (using language iso code). In most use-cases, we don’t recommend enabling this option. List of 41 supported languages with their associated iso code: Arabic=ar, Armenian=hy, Basque=eu, Bengali=bn, Brazilian=pt-br, Bulgarian=bg, Catalan=ca, Chinese=zh, Czech=cs, Danish=da, Dutch=nl, English=en, Finnish=fi, French=fr, Galician=gl, German=de, Greek=el, Hindi=hi, Hungarian=hu, Indonesian=id, Irish=ga, Italian=it, Japanese=ja, Korean=ko, Kurdish=ku, Latvian=lv, Lithuanian=lt, Marathi=mr, Norwegian=no, Persian (Farsi)=fa, Polish=pl, Portugese=pt, Romanian=ro, Russian=ru, Slovak=sk, Spanish=es, Swedish=sv, Thai=th, Turkish=tr, Ukranian=uk, Urdu=ur. Stop words removal is applied on query words that are not interpreted as a prefix. The behavior depends of the queryType parameter: * queryType=prefixLast means the last query word is a prefix and it won’t be considered for stop words removal' * queryType=prefixNone means no query word are prefix, stop words removal will be applied on all query words' * queryType=prefixAll means all query terms are prefix, stop words won’t be removed. This parameter is useful when you have a query in natural language like “what is a record?”. In this case, before executing the query, we will remove “what”, “is” and “a” in order to just search for “record”. This removal will remove false positive because of stop words, especially when combined with optional words. For most use cases, it is better to do not use this feature as people search by keywords on search engines.
 | snippetEllipsisText             | String     | String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).
 | exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
@@ -726,8 +735,8 @@ This method add a new key that can access to this index.
 | appId          | credentials| Algolia Application ID.
 | indexName      | String     | Used to identify a key.
 | description    | String     | Used to identify a key.
-| acl            | JSON       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right)'; **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes
-| referers       | JSON       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
+| acl            | List       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right)'; **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes
+| referers       | List       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
 | queryParameters| String     | Force some query parameters to be applied foreach query made with this api key. You can force all query parameters like: "typoTolerance=strict&ignorePlurals=false&filters=rights:public”. The parameters use the url string format.
 | validity       | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxHitsPerQuery| Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited). This parameter can be used to protect you from attempts at retrieving your entire content by massively querying the index.
@@ -751,8 +760,8 @@ This method update a key that can access to this index.
 | key            | String     | Key to update
 | indexName      | String     | Used to identify a key.
 | description    | String     | Used to identify a key.
-| acl            | JSON       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right); **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes
-| referers| JSON       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
+| acl            | List       | that can be used for a key: **search**: allow to search; **browse**: allow to retrieve all index content via the browse API; **addObject**: allows to add/update an object in the index (copy/move index are also allowed with this right); **deleteObject**: allows to delete an existing object; **deleteIndex**: allows to delete or clear index content; **settings**: allows to get index settings; **editSettings**: allows to change index settings; **analytics**: allows to retrieve the analytics through the analytics API. ; **listIndexes**: allows to list all accessible indexes
+| referers| List       | JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, "https://algolia.com/*” matches all referers starting with "https://algolia.com/” and "*.algolia.com” matches all referers ending with ".algolia.com”. You can combine both of them to like "*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank
 | queryParameters| String     | Force some query parameters to be applied foreach query made with this api key. You can force all query parameters like: "typoTolerance=strict&ignorePlurals=false&filters=rights:public”. The parameters use the url string format.
 | validity       | Number     | Specify a validity for this key in seconds (the key will automatically be removed after this period of time). Defaults to 0 (no validity limit).
 | maxHitsPerQuery| Number     | Specify the maximum number of hits this API key can retrieve in one call. Defaults to 0 (unlimited). This parameter can be used to protect you from attempts at retrieving your entire content by massively querying the index.

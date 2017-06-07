@@ -46,7 +46,8 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": ["query","build","error"],
           "info": "Specify the type of logs to retrieve. This parameter is useful for debugging, especially when it is difficult to locate errors among many API calls:`all` (default): Retrieve all logs; `query`: Retrieve only the queries; `build`: Retrieve only the build operations; `error`: Retrieve only the errors",
           "required": false
         }
@@ -96,21 +97,37 @@
         },
         {
           "name": "acl",
-          "type": "JSON",
-          "info": "Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`",
-          "required": true
+          "type": "List",
+          "info": "List of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
+          "required": true,
+          "structure": {
+            "name": "rights",
+            "type": "Select",
+            "options": ["search","browse","addObject","deleteObject","deleteIndex","settings","editSettings","analytics","listIndexes"],
+            "info": "Rights for this key."
+          }
         },
         {
           "name": "indexes",
-          "type": "JSON",
+          "type": "List",
           "info": "Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example “dev_*” matches all indices starting by “dev_” and “*_dev” matches all indices finishing by “_dev”). If the list is empty or not set, the API Key will be valid for all indices.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "index",
+            "type": "String",
+            "info": "Index name."
+          }
         },
         {
           "name": "referers",
-          "type": "JSON",
+          "type": "List",
           "info": "Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "referer",
+            "type": "String",
+            "info": "Referer url."
+          }
         },
         {
           "name": "queryParameters",
@@ -175,21 +192,37 @@
         },
         {
           "name": "acl",
-          "type": "JSON",
-          "info": "Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "rights",
+            "type": "Select",
+            "options": ["search","browse","addObject","deleteObject","deleteIndex","settings","editSettings","analytics","listIndexes"],
+            "info": "Rights for this key."
+          }
         },
         {
           "name": "indexes",
-          "type": "JSON",
+          "type": "List",
           "info": "Restrict this new API key to specific index names. This option is useful if you want to isolate your development and production environments: you can have one API key targeting all development indices and another one that target all production indices. You can target all indices starting by a prefix or finishing by a suffix with the ‘*’ character (for example “dev_*” matches all indices starting by “dev_” and “*_dev” matches all indices finishing by “_dev”). If the list is empty or not set, the API Key will be valid for all indices.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "index",
+            "type": "String",
+            "info": "Index name."
+          }
         },
         {
           "name": "referers",
-          "type": "JSON",
+          "type": "List",
           "info": "Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "referer",
+            "type": "String",
+            "info": "Referer url."
+          }
         },
         {
           "name": "queryParameters",
@@ -453,9 +486,16 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "List",
           "info": "Only search within specific types of synonyms. Multiple types can be specified using a comma-separated list. Possible values: `synonym`, `onewaysynonym`, `altcorrection1`, `altcorrection2`, `placeholder`",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "type",
+            "type": "Select",
+            "options": ["synonym","onewaysynonym","altcorrection1","altcorrection2","placeholder"],
+            "info": "Type string",
+            "required": false
+          }
         },
         {
           "name": "page",
@@ -515,9 +555,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "Array of synonym strings",
-          "required": true
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": true,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         }
       ],
       "callbacks": [
@@ -565,9 +610,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "Array of synonym strings",
-          "required": true
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": true,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         }
       ],
       "callbacks": [
@@ -621,9 +671,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "Array of synonym strings",
-          "required": true
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": true,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         }
       ],
       "callbacks": [
@@ -677,9 +732,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "Array of synonym strings",
-          "required": true
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": true,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         }
       ],
       "callbacks": [
@@ -727,7 +787,8 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": ["altcorrection1","altcorrection2","altcorrection1|altcorrection2"],
           "info": "Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`. See README for more info.",
           "required": true
         },
@@ -739,9 +800,14 @@
         },
         {
           "name": "corrections",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of corrections strings.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "correction",
+            "type": "String",
+            "info": "Correction string."
+          }
         }
       ],
       "callbacks": [
@@ -789,7 +855,8 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options": ["altcorrection1","altcorrection2","altcorrection1|altcorrection2"],
           "info": "Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`. See README for more info.",
           "required": true
         },
@@ -801,9 +868,14 @@
         },
         {
           "name": "corrections",
-          "type": "JSON",
+          "type": "List",
           "info": "Array of corrections strings.",
-          "required": true
+          "required": true,
+          "structure": {
+            "name": "correction",
+            "type": "String",
+            "info": "Correction string."
+          }
         }
       ],
       "callbacks": [
@@ -857,9 +929,14 @@
         },
         {
           "name": "replacements",
-          "type": "JSON",
-          "info": "Array of replacements strings",
-          "required": true
+          "type": "List",
+          "info": "List of replacements strings",
+          "required": true,
+          "structure":  {
+            "name": "replacement",
+            "type": "String",
+            "info": "Replacement string"
+          }
         }
       ],
       "callbacks": [
@@ -913,9 +990,14 @@
         },
         {
           "name": "replacements",
-          "type": "JSON",
-          "info": "Array of replacements strings",
-          "required": true
+          "type": "List",
+          "info": "List of replacements strings",
+          "required": true,
+          "structure":  {
+            "name": "replacement",
+            "type": "String",
+            "info": "Replacement string"
+          }
         }
       ],
       "callbacks": [
@@ -989,7 +1071,8 @@
         },
         {
           "name": "typoTolerance",
-          "type": "String",
+          "type": "Select",
+          "options": ["true","false","min","strict"],
           "info": "This setting has four different options: `true` (default), `false`, `min`: keep only results with the lowest number of typo, `strict`: if there is a match without typo, then all results with 2 typos or more will be removed.",
           "required": false
         },
@@ -1055,9 +1138,15 @@
         },
         {
           "name": "optionalWords",
-          "type": "String",
-          "info": "Specify a list of words that should be considered as optional when found in the query. The list of words is comma separated. This list will be appended to the one defined in your index settings.",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Specify a list of words that should be considered as optional when found in the query",
+          "required": false,
+          "structure": {
+            "name": "word",
+            "type": "String",
+            "info": "Word that should be considered as optional when found in the query"
+          }
+
         },
         {
           "name": "minProximity",
@@ -1085,15 +1174,21 @@
         },
         {
           "name": "exactOnSingleWordQuery",
-          "type": "String",
-          "info": "This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute` (default)",
+          "type": "Select",
+          "options": ["none","word","attribute"],
+          "info": "This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.",
           "required": false
         },
         {
           "name": "alternativesAsExact",
-          "type": "String",
-          "info": "Сomma-separated string list. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "Specify the list of approximation that should be considered as an exact match in the ranking formula. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "alternative",
+            "type": "String",
+            "info": "Approximation that should be considered as an exact match in the ranking formula."
+          }
         },
         {
           "name": "page",
@@ -1507,9 +1602,23 @@
         },
         {
           "name": "requests",
-          "type": "JSON",
+          "type": "Array",
           "info": "JSON Array of Objects. See README for more info.",
-          "required": true
+          "required": true,
+          "structure": [
+            {
+              "name": "indexName",
+              "type": "String",
+              "info": "Index Name",
+              "required": true
+            },
+            {
+              "name": "objectID",
+              "type": "String",
+              "info": "Object ID",
+              "required": true
+            }
+          ]
         }
       ],
       "callbacks": [
@@ -1583,9 +1692,14 @@
         },
         {
           "name": "attributesToIndex",
-          "type": "JSON",
-          "info": "JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "attribute",
+            "type": "String",
+            "info": "Attribute to index"
+          }
         },
         {
           "name": "numericAttributesToIndex",
@@ -1595,9 +1709,14 @@
         },
         {
           "name": "attributesForFaceting",
-          "type": "JSON",
+          "type": "List",
           "info": "The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "attribute",
+            "type": "String",
+            "info": "Attribute name."
+          }
         },
         {
           "name": "attributeForDistinct",
@@ -1607,15 +1726,25 @@
         },
         {
           "name": "ranking",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Controls the way results are sorted. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "Link of Strings. Controls the way results are sorted. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "control",
+            "type": "String",
+            "info": "Control the way results are sorted."
+          }
         },
         {
           "name": "customRanking",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]",
+          "required": false,
+          "structure": {
+            "name": "part",
+            "type": "String",
+            "info": "Specify part of the ranking."
+          }
         },
         {
           "name": "separatorsToIndex",
@@ -1643,9 +1772,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "JSON Array Of Strings. An array of array of string considered as equal. See README for more info",
-          "required": false
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": false,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         },
         {
           "name": "placeholders",
@@ -1661,9 +1795,14 @@
         },
         {
           "name": "disableTypoToleranceOnWords",
-          "type": "JSON",
-          "info": "JSON Array of String. Specify a list of words on which the automatic typo tolerance will be disabled.",
-          "required": false
+          "type": "List",
+          "info": "List of String. Specify a list of words on which the automatic typo tolerance will be disabled.",
+          "required": false,
+          "structure": {
+            "name": "word",
+            "type": "String",
+            "info": "Word on which the automatic typo tolerance will be disabled"
+          }
         },
         {
           "name": "disableTypoToleranceOnAttributes",
@@ -1745,9 +1884,15 @@
         },
         {
           "name": "optionalWords",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Specify a list of words that should be considered as optional when found in the query",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Specify a list of words that should be considered as optional when found in the query",
+          "required": false,
+          "structure": {
+            "name": "word",
+            "type": "String",
+            "info": "Word that should be considered as optional when found in the query"
+          }
+
         },
         {
           "name": "allowTyposOnNumericTokens",
@@ -1787,7 +1932,8 @@
         },
         {
           "name": "typoTolerance",
-          "type": "String",
+          "type": "Select",
+          "options": ["true","false","min","strict"],
           "info": "This setting has four different options: `true`, `false`, `min`, `strict`.",
           "required": false
         },
@@ -1805,15 +1951,21 @@
         },
         {
           "name": "exactOnSingleWordQuery",
-          "type": "String",
+          "type": "Select",
+          "options": ["none","word","attribute"],
           "info": "This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.",
           "required": false
         },
         {
           "name": "alternativesAsExact",
-          "type": "String",
+          "type": "List",
           "info": "Specify the list of approximation that should be considered as an exact match in the ranking formula. See README for more info.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "alternative",
+            "type": "String",
+            "info": "Approximation that should be considered as an exact match in the ranking formula."
+          }
         }
       ],
       "callbacks": [
@@ -1887,9 +2039,14 @@
         },
         {
           "name": "attributesToIndex",
-          "type": "JSON",
-          "info": "JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "attribute",
+            "type": "String",
+            "info": "Attribute to index"
+          }
         },
         {
           "name": "numericAttributesToIndex",
@@ -1899,9 +2056,14 @@
         },
         {
           "name": "attributesForFaceting",
-          "type": "JSON",
+          "type": "List",
           "info": "The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "attribute",
+            "type": "String",
+            "info": "Attribute name."
+          }
         },
         {
           "name": "attributeForDistinct",
@@ -1911,15 +2073,25 @@
         },
         {
           "name": "ranking",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Controls the way results are sorted. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "Link of Strings. Controls the way results are sorted. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "control",
+            "type": "String",
+            "info": "Control the way results are sorted."
+          }
         },
         {
           "name": "customRanking",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]",
+          "required": false,
+          "structure": {
+            "name": "part",
+            "type": "String",
+            "info": "Specify part of the ranking."
+          }
         },
         {
           "name": "separatorsToIndex",
@@ -1947,9 +2119,14 @@
         },
         {
           "name": "synonyms",
-          "type": "JSON",
-          "info": "JSON Array Of Strings. An array of array of string considered as equal. See README for more info",
-          "required": false
+          "type": "List",
+          "info": "List of synonym strings",
+          "required": false,
+          "structure": {
+            "name": "synonym",
+            "type": "String",
+            "info": "Synonym strings"
+          }
         },
         {
           "name": "placeholders",
@@ -1965,9 +2142,14 @@
         },
         {
           "name": "disableTypoToleranceOnWords",
-          "type": "JSON",
-          "info": "JSON Array of String. Specify a list of words on which the automatic typo tolerance will be disabled.",
-          "required": false
+          "type": "List",
+          "info": "List of String. Specify a list of words on which the automatic typo tolerance will be disabled.",
+          "required": false,
+          "structure": {
+            "name": "word",
+            "type": "String",
+            "info": "Word on which the automatic typo tolerance will be disabled"
+          }
         },
         {
           "name": "disableTypoToleranceOnAttributes",
@@ -2049,9 +2231,15 @@
         },
         {
           "name": "optionalWords",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Specify a list of words that should be considered as optional when found in the query",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Specify a list of words that should be considered as optional when found in the query",
+          "required": false,
+          "structure": {
+            "name": "word",
+            "type": "String",
+            "info": "Word that should be considered as optional when found in the query"
+          }
+
         },
         {
           "name": "allowTyposOnNumericTokens",
@@ -2091,7 +2279,8 @@
         },
         {
           "name": "typoTolerance",
-          "type": "String",
+          "type": "Select",
+          "options": ["true","false","min","strict"],
           "info": "This setting has four different options: `true`, `false`, `min`, `strict`.",
           "required": false
         },
@@ -2109,15 +2298,21 @@
         },
         {
           "name": "exactOnSingleWordQuery",
-          "type": "String",
+          "type": "Select",
+          "options": ["none","word","attribute"],
           "info": "This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.",
           "required": false
         },
         {
           "name": "alternativesAsExact",
-          "type": "String",
+          "type": "List",
           "info": "Specify the list of approximation that should be considered as an exact match in the ranking formula. See README for more info.",
-          "required": false
+          "required": false,
+          "structure": {
+            "name": "alternative",
+            "type": "String",
+            "info": "Approximation that should be considered as an exact match in the ranking formula."
+          }
         }
       ],
       "callbacks": [
@@ -2273,15 +2468,26 @@
         },
         {
           "name": "acl",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
-          "required": true
+          "type": "List",
+          "info": "List of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
+          "required": true,
+          "structure": {
+            "name": "rights",
+            "type": "Select",
+            "options": ["search","browse","addObject","deleteObject","deleteIndex","settings","editSettings","analytics","listIndexes"],
+            "info": "Rights for this key."
+          }
         },
         {
           "name": "referers",
-          "type": "JSON",
-          "info": "JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*.algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
-          "required": false
+          "type": "List",
+          "info": "Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
+          "required": false,
+          "structure": {
+            "name": "referer",
+            "type": "String",
+            "info": "Referer url."
+          }
         },
         {
           "name": "queryParameters",
@@ -2347,15 +2553,26 @@
         },
         {
           "name": "acl",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
-          "required": false
+          "type": "List",
+          "info": "List of Strings. Contains the list of rights for this key. Here is the complete list of ACL that can be used for a key: `search`, `browse`, `addObject`, `deleteObject`, `deleteIndex`, `settings`, `editSettings`, `analytics`, `listIndexes`. See README for more info.",
+          "required": false,
+          "structure": {
+            "name": "rights",
+            "type": "Select",
+            "options": ["search","browse","addObject","deleteObject","deleteIndex","settings","editSettings","analytics","listIndexes"],
+            "info": "Rights for this key."
+          }
         },
         {
           "name": "referers",
-          "type": "JSON",
-          "info": "JSON Array of String. Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*.algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
-          "required": false
+          "type": "List",
+          "info": "Restrict this new API key to specific referers. You can specify a pattern with one or two *. For example, “https://algolia.com/*” matches all referers starting with “https://algolia.com/” and “*algolia.com” matches all referers ending with “.algolia.com”. You can combine both of them to like “*.algolia.com*” to allow the domain algolia.com. Defaults to all referers if empty or blank",
+          "required": false,
+          "structure": {
+            "name": "referer",
+            "type": "String",
+            "info": "Referer url."
+          }
         },
         {
           "name": "queryParameters",

@@ -4,3 +4,4 @@ test/*.json
 generate.js
 ctrl_metadata.json
 *.log
+.idea
