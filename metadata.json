@@ -486,16 +486,9 @@
         },
         {
           "name": "type",
-          "type": "List",
+          "type": "String",
           "info": "Only search within specific types of synonyms. Multiple types can be specified using a comma-separated list. Possible values: `synonym`, `onewaysynonym`, `altcorrection1`, `altcorrection2`, `placeholder`",
-          "required": false,
-          "structure": {
-            "name": "type",
-            "type": "Select",
-            "options": ["synonym","onewaysynonym","altcorrection1","altcorrection2","placeholder"],
-            "info": "Type string",
-            "required": false
-          }
+          "required": false
         },
         {
           "name": "page",
