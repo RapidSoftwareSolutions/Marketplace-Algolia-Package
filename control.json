@@ -597,5 +597,15 @@
             "String|facetName": "$!facetName",
             "String|params": "$params"
         }
+    },
+    "batchObjectsWrite": {
+        "url": "/1/indexes/:indexName/batch",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
+            "String|indexName": "$!indexName",
+            "Raw|requests": "$!requests"
+        }
     }
 }

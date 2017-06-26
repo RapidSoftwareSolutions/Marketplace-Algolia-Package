@@ -2774,6 +2774,49 @@
           "info": "Error"
         }
       ]
+    },
+    {
+      "name": "batchObjectsWrite",
+      "description": "Perform multiple write operations in a single API call.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key."
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID."
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index Name",
+          "required": true
+        },
+        {
+          "name": "requests",
+          "type": "List",
+          "structure":{
+            "name": "request",
+            "type": "JSON",
+            "info": "Single request"
+          },
+          "info": "Batch operations",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
     }
   ]
 }

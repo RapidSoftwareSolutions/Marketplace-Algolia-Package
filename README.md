@@ -5,7 +5,7 @@ The Algolia API includes autocomplete functionality and an instant results displ
 * Domain: algolia.com
 * Credentials: apiKey, appId
 
-## How to get credentials: 
+## How to get credentials:
 1. Login into your [Algolia Dashboard](https://www.algolia.com/dashboard)
 2. Go to API [Keys section](https://www.algolia.com/api-keys)
 3. Use your Application ID as `appId` and Admin API Key as `apiKey`
@@ -325,7 +325,7 @@ Return objects that match the query.
 | minWordSizefor2Typos            | Number     | The minimum number of characters in a query word to accept two typos in this word. Defaults to 8.
 | allowTyposOnNumericTokens       | String     | If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to true.
 | ignorePlurals                   | Boolean    | If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.
-| restrictSearchableAttributes    | String     | List of attributes you want to use for textual search 
+| restrictSearchableAttributes    | String     | List of attributes you want to use for textual search
 | advancedSyntax                  | String     | Enable the advanced query syntax. Defaults to 0 (false).
 | analytics                       | Boolean    | If set to false, this query will not be taken into account for the Analytics. Defaults to true.
 | analyticsTags                   | String     | Comma-separated string list. If set, tag your query with the specified identifiers. Tags can then be used in the Analytics to analyze a subset of searches only.
@@ -390,14 +390,14 @@ This method adds one object in the index with automatic assignation of `objectId
 | apiKey       | credentials| Algolia Application Key.
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to add object for.
-| object       | JSON       | Object body. 
+| object       | JSON       | Object body.
 
 #### `object` format:
 ```json
 {
 	"name": "Betty Jane Mccamey",
 	"company": "Vita Foods Inc.",
-	"email": "betty@mccamey.com" 
+	"email": "betty@mccamey.com"
 }
 ```
 
@@ -410,14 +410,14 @@ This method adds or replaces an object (if the object does not exist, it will be
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to add object for.
 | objectId     | String     | Index name to add object for.
-| object       | JSON       | Object body. 
+| object       | JSON       | Object body.
 
 #### `object` format:
 ```json
 {
 	"name": "Betty Jane Mccamey",
 	"company": "Vita Foods Inc.",
-	"email": "betty@mccamey.com" 
+	"email": "betty@mccamey.com"
 }
 ```
 
@@ -430,7 +430,7 @@ This method updates part of an object (if the object does not exist, it will be 
 | appId            | credentials| Algolia Application ID.
 | indexName        | String     | Index name to add object for.
 | objectId         | String     | Index name to add object for.
-| object           | JSON       | Object body. 
+| object           | JSON       | Object body.
 | createIfNotExists| Boolean    | You can avoid an automatic creation of the object. Defaults is `true`
 
 #### `object` format:
@@ -438,9 +438,60 @@ This method updates part of an object (if the object does not exist, it will be 
 {
 	"name": "Betty Jane Mccamey",
 	"company": "Vita Foods Inc.",
-	"email": "betty@mccamey.com" 
+	"email": "betty@mccamey.com"
 }
 ```
+
+## Algolia.batchObjectsWrite
+Perform multiple write operations in a single API call.
+
+| Field        | Type       | Description
+|--------------|------------|----------
+| apiKey       | credentials| Algolia Application Key.
+| appId        | credentials| Algolia Application ID.
+| indexName    | String     | Index name to add object for.
+| requests       | List       | Request objects.
+
+#### `requests` format:
+```json
+{"requests": [
+    {
+      "action": "addObject",
+      "body": {
+                "name": "Betty Jane Mccamey",
+                "company": "Vita Foods Inc.",
+                "email": "betty@mccamey.com"
+              }
+    },
+    {
+        "action": "updateObject",
+        "objectID": "123",
+        "body": {
+                  "name": "Gayla Geimer",
+                  "company": "Ortman Mccain Co",
+                  "email": "gayla@geimer.com"
+                }
+      }
+  ]
+}
+```
+### following actions supported
+```
+addObject: Add an object. Equivalent to Add an object without ID.
+
+updateObject: Add or replace an existing object. You must set the objectID attribute to indicate the object to update. Equivalent to Add/update an object by ID.
+
+partialUpdateObject: Partially update an object. You must set the objectID attribute to indicate the object to update. Equivalent to Partially update an object.
+
+partialUpdateObjectNoCreate: Same as partialUpdateObject, except that the object is not created if the object designed by objectID does not exist.
+
+deleteObject: Delete an object. You must set the objectID attribute to indicate the object to delete. Equivalent to Delete an object.
+
+delete: Delete the index. Equivalent to Delete an index.
+
+clear: Remove the index’s content, but keep settings and index-specific API keys untouched. Equivalent to Clear an index.
+```
+
 
 ## Algolia.getSingleObject
 This method returns one object from the index.
@@ -522,10 +573,10 @@ This method retrieve index settings.
 | maxValuesPerFacet               | Number     | Limit the number of facet values returned for each facet. For example: maxValuesPerFacet=10 will retrieve max 10 values per facet. Defaults to 100.
 | distinct                        | Number     | Enable the distinct feature (disabled by default) if the attributeForDistinct index setting is set. This feature is similar to the SQL "distinct” keyword: when enabled in a query with the distinct=1 parameter, all hits containing a duplicate value for theattributeForDistinct attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
 | typoTolerance                   | String     | This setting has four different options: `true`, `false`, `min`, `strict`.
-| removeStopWords                 | String     | Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code). 
+| removeStopWords                 | String     | Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code).
 | snippetEllipsisText             | String     | String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).
 | exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
-| alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula. 
+| alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula.
 
 #### `attributesToIndex` example:
 ```json
@@ -556,8 +607,8 @@ This method retrieve index settings.
 
 #### `altCorrections` example:
 ```json
-"altCorrections": [ 
-	{ "word" : "foot", "correction": "feet", "nbTypos": 1}, 
+"altCorrections": [
+	{ "word" : "foot", "correction": "feet", "nbTypos": 1},
 	{ "word": "feet", "correction": "foot", "nbTypos": 1}
 ]
 ```
@@ -604,15 +655,15 @@ This method updates part of index settings, the list of attributes and their beh
 | numericAttributesToIndex        | String     | All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.
 | attributesForFaceting           | List       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
 | attributeForDistinct            | String     | The attribute name used for the Distinct feature. This feature is similar to the SQL "distinct” keyword: when enabled in query with the distinct=1 parameter, all hits containing a duplicate value for this attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
-| ranking                         | JSON       | JSON Array of Strings. Controls the way results are sorted. 
+| ranking                         | JSON       | JSON Array of Strings. Controls the way results are sorted.
 | customRanking                   | List       | JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]
 | separatorsToIndex               | String     | Specify the separators (punctuation characters) to index. By default, separators are not indexed. Use `+#` to be able to search Google+ or C#.
 | slaves                          | String     | JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.
 | unretrievableAttributes         | String     | JSON Array Of Strings. List of attributes that cannot be retrieved at query time. This feature allows you to have an attribute that is used for indexing and/or ranking but which cannot be retrieved. This setting will be bypassed if the query is done with the ADMIN API key. Defaults to null.
 | allowCompressionOfIntegerArray  | Boolean    | Allows compression of big integer arrays. We recommended to store the list of user ID or rights as an integer array and enable this setting. When enabled the integer array are reordered to reach a better compression ratio. Defaults to false.
 | synonyms                        | JSON       | JSON Array Of Strings. An array of array of string considered as equal. See README for more info
-| placeholders                    | JSON       | JSON Hash. This is an advanced use case to define a token substitutable by a list of words without having the original token searchable. 
-| altCorrections                  | JSON       | Specify alternative corrections that you want to consider. 
+| placeholders                    | JSON       | JSON Hash. This is an advanced use case to define a token substitutable by a list of words without having the original token searchable.
+| altCorrections                  | JSON       | Specify alternative corrections that you want to consider.
 | disableTypoToleranceOnWords     | JSON       | JSON Array of String. Specify a list of words on which the automatic typo tolerance will be disabled.
 | disableTypoToleranceOnAttributes| JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
 | disablePrefixOnAttributes       | JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
@@ -624,13 +675,13 @@ This method updates part of index settings, the list of attributes and their beh
 | attributesToHighlight           | JSON       | JSON Array of String. Default list of attributes to highlight. If set to null, all indexed attributes are highlighted.
 | attributesToSnippet             | JSON       | JSON Array of Strings. Default list of attributes to snippet alongside the number of words to return (syntax is ‘attributeName:nbWords’). If set to null, no snippet is computed.
 | queryType                       | String     | Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.
-| minProximity                    | Number     | Configure the precision of the proximity ranking criterion. 
+| minProximity                    | Number     | Configure the precision of the proximity ranking criterion.
 | highlightPreTag                 | String     | Specify the string that is inserted before the highlighted parts in the query result (defaults to `&lt;em&gt;`).
 | highlightPostTag                | String     | Specify the string that is inserted after the highlighted parts in the query result (defaults to `&lt;/em&gt;`).
 | optionalWords                   | JSON       | JSON Array of Strings. Specify a list of words that should be considered as optional when found in the query
 | allowTyposOnNumericTokens       | Boolean    | If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to false.
 | ignorePlurals                   | Boolean    | If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.
-| advancedSyntax                  | Boolean    | Enable the advanced query syntax. Defaults to 0 (false). 
+| advancedSyntax                  | Boolean    | Enable the advanced query syntax. Defaults to 0 (false).
 | replaceSynonymsInHighlight      | Boolean    | If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.
 | maxValuesPerFacet               | Number     | Limit the number of facet values returned for each facet. For example: maxValuesPerFacet=10 will retrieve max 10 values per facet. Defaults to 100.
 | distinct                        | Number     | Enable the distinct feature (disabled by default) if the attributeForDistinct index setting is set. This feature is similar to the SQL "distinct” keyword: when enabled in a query with the distinct=1 parameter, all hits containing a duplicate value for theattributeForDistinct attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
@@ -638,7 +689,7 @@ This method updates part of index settings, the list of attributes and their beh
 | removeStopWords                 | String     | Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a comma separated string with the list of languages you have in your record (using language iso code). In most use-cases, we don’t recommend enabling this option. List of 41 supported languages with their associated iso code: Arabic=ar, Armenian=hy, Basque=eu, Bengali=bn, Brazilian=pt-br, Bulgarian=bg, Catalan=ca, Chinese=zh, Czech=cs, Danish=da, Dutch=nl, English=en, Finnish=fi, French=fr, Galician=gl, German=de, Greek=el, Hindi=hi, Hungarian=hu, Indonesian=id, Irish=ga, Italian=it, Japanese=ja, Korean=ko, Kurdish=ku, Latvian=lv, Lithuanian=lt, Marathi=mr, Norwegian=no, Persian (Farsi)=fa, Polish=pl, Portugese=pt, Romanian=ro, Russian=ru, Slovak=sk, Spanish=es, Swedish=sv, Thai=th, Turkish=tr, Ukranian=uk, Urdu=ur. Stop words removal is applied on query words that are not interpreted as a prefix. The behavior depends of the queryType parameter: * queryType=prefixLast means the last query word is a prefix and it won’t be considered for stop words removal' * queryType=prefixNone means no query word are prefix, stop words removal will be applied on all query words' * queryType=prefixAll means all query terms are prefix, stop words won’t be removed. This parameter is useful when you have a query in natural language like “what is a record?”. In this case, before executing the query, we will remove “what”, “is” and “a” in order to just search for “record”. This removal will remove false positive because of stop words, especially when combined with optional words. For most use cases, it is better to do not use this feature as people search by keywords on search engines.
 | snippetEllipsisText             | String     | String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).
 | exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
-| alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula. 
+| alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula.
 
 
 #### `attributesToIndex` example:
@@ -670,8 +721,8 @@ This method updates part of index settings, the list of attributes and their beh
 
 #### `altCorrections` example:
 ```json
-"altCorrections": [ 
-	{ "word" : "foot", "correction": "feet", "nbTypos": 1}, 
+"altCorrections": [
+	{ "word" : "foot", "correction": "feet", "nbTypos": 1},
 	{ "word": "feet", "correction": "foot", "nbTypos": 1}
 ]
 ```
@@ -744,11 +795,11 @@ This method add a new key that can access to this index.
 #### `acl` example:
 ```json
 "acl": ["search", "browse"]
-``` 
+```
 #### `referers` example:
 ```json
 "referers": ["*.algolia.com”"]
-``` 
+```
 
 ## Algolia.updateIndexSpecificApiKey
 This method update a key that can access to this index.
@@ -769,11 +820,11 @@ This method update a key that can access to this index.
 #### `acl` example:
 ```json
 "acl": ["search", "browse"]
-``` 
+```
 #### `referers` example:
 ```json
 "referers": ["*.algolia.com”"]
-``` 
+```
 
 ## Algolia.getIndexSpecificApiKeys
 This method Lists API keys that have access to this index with their rights. These keys have been created with the add index specific key API.
@@ -823,7 +874,7 @@ This method searches for values of a given facet, optionally restricting the ret
 | facetName    | String     | Facet Name
 | params       | String     | params (string): Search parameters. You must specify at least the facetQuery parameter, which contains the text that will be searched inside the facet's values. You may also specify any number of other regular search parameters. They will apply to objects in the index.
 
-#### `params` example: 
+#### `params` example:
 ```json
 "params": "facetQuery=${facetQuery}"
 ```
