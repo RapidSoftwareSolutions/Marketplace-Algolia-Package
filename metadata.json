@@ -25,12 +25,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "offset",
@@ -70,12 +72,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "validity",
@@ -160,17 +164,20 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "key",
           "type": "String",
-          "info": "Key to update"
+          "info": "Key to update",
+            "required": true
         },
         {
           "name": "validity",
@@ -255,12 +262,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         }
       ],
       "callbacks": [
@@ -281,12 +290,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "key",
@@ -313,12 +324,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "key",
@@ -345,12 +358,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -427,12 +442,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -465,12 +482,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -521,12 +540,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -576,12 +597,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -631,12 +654,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -692,12 +717,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -753,12 +780,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -821,12 +850,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -889,12 +920,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -950,12 +983,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1011,12 +1046,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         }
       ],
       "callbacks": [
@@ -1037,12 +1074,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1352,12 +1391,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1384,12 +1425,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1416,12 +1459,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1454,12 +1499,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1498,12 +1545,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1548,12 +1597,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1586,12 +1637,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "requests",
@@ -1632,12 +1685,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1670,12 +1725,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -1979,12 +2036,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2011,12 +2070,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2326,12 +2387,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2364,12 +2427,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2402,12 +2467,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2440,12 +2507,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2519,12 +2588,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "key",
@@ -2604,12 +2675,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2636,12 +2709,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         }
       ],
       "callbacks": [
@@ -2662,12 +2737,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2700,12 +2777,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2738,12 +2817,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
@@ -2782,12 +2863,14 @@
         {
           "name": "apiKey",
           "type": "credentials",
-          "info": "Algolia Application Key."
+          "info": "Algolia Application Key.",
+            "required": true
         },
         {
           "name": "appId",
           "type": "credentials",
-          "info": "Algolia Application ID."
+          "info": "Algolia Application ID.",
+            "required": true
         },
         {
           "name": "indexName",
