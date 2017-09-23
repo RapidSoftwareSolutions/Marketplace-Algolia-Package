@@ -17,6 +17,11 @@
       "appId"
     ]
   },
+  "steps": [
+    "Login into your Algolia Dashboard (https://www.algolia.com/dashboard)",
+    "Go to API Keys section (https://www.algolia.com/api-keys)",
+    "Use your Application ID as appId and Admin API Key as apiKey"
+  ],
   "blocks": [
     {
       "name": "getLogs",
