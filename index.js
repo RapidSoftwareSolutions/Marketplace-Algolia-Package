@@ -73,6 +73,19 @@ for (let func in control) {
 
       for (let arg in args) {
         let argarr = arg.split('|');
+        if(argarr[0] == 'Boolean')
+        {
+
+           if(req.body.args[argarr[1]] === 'true')
+           {
+             console.log(args[arg]);
+            argarr[1] = true;
+           } else if(req.body.args[argarr[1]] === 'false')
+           {
+            req.body.args[argarr[1]] = false;
+           }
+        }
+
         opts[args[arg] + '|' + argarr[0]] = req.body.args[argarr[1]];
 
       }
@@ -82,8 +95,36 @@ for (let func in control) {
       //options.isRawBody = method == 'POST' || method == 'PUT';
       options.method = method;
       if(func == 'batchObjectsWrite'){
+        console.log(rawArgs);
         options.body['$!requests|Raw'] = {"requests":rawArgs};
         }
+
+        if(func == 'getSingleObject' && options.query['attributes|String'])
+        {
+          options.query['attributes|String'] = options.query['attributes|String'].join(',');
+        }
+
+        if(func == 'querySingleIndex' && options.query['optionalFilters|String'])
+        {
+          options.query['optionalFilters|String'] = options.query['optionalFilters|String'].join(',');
+        }
+        if(func == 'querySingleIndex' && options.query['disableExactOnAttributes|String'])
+        {
+          options.query['disableExactOnAttributes|String'] = options.query['disableExactOnAttributes|String'].join(',');
+        }
+        if(func == 'querySingleIndex' && options.query['ruleContexts|String'])
+        {
+          options.query['ruleContexts|String'] = options.query['ruleContexts|String'].join(',');
+        }
+        if(func == 'querySingleIndex' && options.query['optionalWords|String'])
+        {
+          options.query['optionalWords|String'] = options.query['optionalWords|String'].join(',');
+        }
+        if(func == 'querySingleIndex' && options.query['alternativesAsExact|String'])
+        {
+          options.query['alternativesAsExact|String'] = options.query['alternativesAsExact|String'].join(',');
+        }
+      // console.log(options);
       response = yield api.request(options);
       r.callback = 'success';
       r.contextWrites['to'] = response == '' ? {

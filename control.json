@@ -1,4 +1,14 @@
 {
+    "searchMultipleIndexes": {
+        "url": "/1/indexes/*/queries",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
+            "JSON|requests": "requests",
+            "String|strategy": "strategy"
+        }
+    },
     "getLogs": {
         "url": "/1/logs",
         "method": "GET",
@@ -7,7 +17,8 @@
             "credentials|appId": "$!appId",
             "Number|offset": "offset",
             "Number|length": "length",
-            "String|type": "type"
+            "String|type": "type",
+            "String|indexName": "indexName"
         }
     },
     "addGlobalApiKey": {
@@ -109,8 +120,8 @@
             "String|indexName": "$!indexName",
             "String|query": "query",
             "String|type": "type",
-            "String|page": "page",
-            "String|hitsPerPage": "hitsPerPage"
+            "Number|page": "page",
+            "Number|hitsPerPage": "hitsPerPage"
         }
     },
     "createRegularSynonymSet": {
@@ -294,7 +305,19 @@
             "String|aroundPrecision": "aroundPrecision",
             "String|minimumAroundRadius": "minimumAroundRadius",
             "String|insideBoundingBox": "insideBoundingBox",
-            "String|insidePolygon": "insidePolygon"
+            "String|insidePolygon": "insidePolygon",
+            "String|optionalFilters":"optionalFilters",
+            "Boolean|sumOrFiltersScores":"sumOrFiltersScores",
+            "Boolean|facetingAfterDistinct":"facetingAfterDistinct",
+            "String|sortFacetValuesBy":"sortFacetValuesBy",
+            "Boolean|restrictHighlightAndSnippetArrays":"restrictHighlightAndSnippetArrays",
+            "Boolean|aroundLatLngViaIP":"aroundLatLngViaIP",
+            "String|disableExactOnAttributes":"disableExactOnAttributes",
+            "Boolean|enableRules":"enableRules",
+            "String|ruleContexts":"ruleContexts",
+            "Number|maxFacetHits":"maxFacetHits",
+            "Boolean|percentileComputation":"percentileComputation"
+
         }
     },
     "deleteSingleIndex": {
@@ -355,7 +378,8 @@
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
-            "String|objectId": "$!objectId"
+            "String|objectId": "$!objectId",
+            "String|attributes":"attributes"
         }
     },
     "getObjects": {
@@ -431,7 +455,9 @@
         "args": {
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
-            "String|indexName": "$!indexName"
+            "String|indexName": "$!indexName",
+            "String|params": "$!params",
+            "String|cursor": "$!cursor"
         }
     },
     "changeIndexSettings": {
@@ -472,7 +498,7 @@
             "JSON|optionalWords": "optionalWords",
             "Boolean|allowTyposOnNumericTokens": "allowTyposOnNumericTokens",
             "Boolean|ignorePlurals": "ignorePlurals",
-            "Boolean|advancedSyntax": "advancedSyntax",
+            "Number|advancedSyntax": "advancedSyntax",
             "Boolean|replaceSynonymsInHighlight": "replaceSynonymsInHighlight",
             "Number|maxValuesPerFacet": "maxValuesPerFacet",
             "Number|distinct": "distinct",
@@ -606,6 +632,16 @@
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "Raw|requests": "$!requests"
+        }
+    },
+    "deleteRecordByQuery": {
+        "url": "/1/indexes/:indexName/deleteByQuery",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
+            "String|indexName": "$!indexName",
+            "String|params": "$params"
         }
     }
 }

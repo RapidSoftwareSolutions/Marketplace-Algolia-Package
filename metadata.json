@@ -24,6 +24,61 @@
   ],
   "blocks": [
     {
+      "name": "searchMultipleIndexes",
+      "description": "This method allows to send multiple search queries, potentially targeting multiple indices, in a single API call.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key.",
+            "required": true
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID.",
+            "required": true
+        },
+        {
+          "name": "requests",
+          "type": "Array",
+          "info": "List of queries. Results will be received in the same order as the queries in the requests attribute.",
+          "required": true,
+          "structure": [
+            {
+              "name": "indexName",
+              "type": "String",
+              "info": "Index targeted by the query.",
+              "required": true
+            },
+            {
+              "name": "params",
+              "type": "String",
+              "info": "URL-encoded list of search parameters.",
+              "required": true
+            }
+          ]
+        },
+        {
+          "name": "strategy",
+          "type": "Select",
+          "options":["stopIfEnoughMatches","hitsPerPage","none"],
+          "info": "Allows optimizing execution of the queries by potentially skipping some of them.See more in readme.",
+            "required": false
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
       "name": "getLogs",
       "description": "Return last logs.",
       "args": [
@@ -38,6 +93,12 @@
           "type": "credentials",
           "info": "Algolia Application ID.",
             "required": true
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index for which log entries should be retrieved. When omitted, log entries are retrieved across all indices.",
+          "required": false
         },
         {
           "name": "offset",
@@ -424,7 +485,8 @@
         },
         {
           "name": "forwardToSlaves",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Delete the synonyms set in all slave indices as well",
           "required": false
         }
@@ -464,7 +526,8 @@
         },
         {
           "name": "forwardToSlaves",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Delete the synonyms set in all slave indices as well",
           "required": false
         }
@@ -510,19 +573,20 @@
         },
         {
           "name": "type",
-          "type": "String",
+          "type": "Select",
+          "options":["synonym","onewaysynonym","altcorrection1","altcorrection2","placeholder"],
           "info": "Only search within specific types of synonyms. Multiple types can be specified using a comma-separated list. Possible values: `synonym`, `onewaysynonym`, `altcorrection1`, `altcorrection2`, `placeholder`",
           "required": false
         },
         {
           "name": "page",
-          "type": "String",
+          "type": "Number",
           "info": "The page to fetch (first page is 0).",
           "required": false
         },
         {
           "name": "hitsPerPage",
-          "type": "String",
+          "type": "Number",
           "info": "The number of synonyms to fetch per page.",
           "required": false
         }
@@ -568,7 +632,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -625,7 +690,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -682,7 +748,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -745,7 +812,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -808,15 +876,16 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
         {
           "name": "type",
           "type": "Select",
-          "options": ["altcorrection1","altcorrection2","altcorrection1|altcorrection2"],
-          "info": "Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`. See README for more info.",
+          "options": ["altcorrection1","altcorrection2"],
+          "info": "Valid values: `altcorrection1`, `altcorrection2`. See README for more info.",
           "required": true
         },
         {
@@ -878,7 +947,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -948,7 +1018,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -1011,7 +1082,8 @@
         },
         {
           "name": "forwardToSlave",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Push the new/updated synonyms set to all slave indices",
           "required": false
         },
@@ -1169,7 +1241,8 @@
         },
         {
           "name": "replaceSynonymsInHighlight",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.",
           "required": false
         },
@@ -1187,7 +1260,7 @@
         },
         {
           "name": "minProximity",
-          "type": "String",
+          "type": "Number",
           "info": "Configure the precision of the proximity ranking criterion. See README for more info.",
           "required": false
         },
@@ -1206,7 +1279,7 @@
         {
           "name": "removeStopWords",
           "type": "String",
-          "info": "Boolean or comma-separated string list. See README for more info",
+          "info": "Remove stop words from the query before executing it.Boolean or comma-separated string list. See README for more info",
           "required": false
         },
         {
@@ -1242,13 +1315,13 @@
         {
           "name": "offset",
           "type": "Number",
-          "info": "Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.",
+          "info": "Specify the offset of the first hit to return.Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.",
           "required": false
         },
         {
           "name": "length",
           "type": "Number",
-          "info": "Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.",
+          "info": "Set the number of hits to retrieve (used only with offset).Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.",
           "required": false
         },
         {
@@ -1355,13 +1428,13 @@
         },
         {
           "name": "aroundPrecision",
-          "type": "String",
+          "type": "Number",
           "info": "Control the precision of a aroundLatLng query. In meter. For example if you set aroundPrecision=100, two objects that are in the range 0-99m will be considered as identical in the ranking for the .variable geo ranking parameter (same for 100-199, 200-299, … ranges).",
           "required": false
         },
         {
           "name": "minimumAroundRadius",
-          "type": "String",
+          "type": "Number",
           "info": "Define the minimum radius used for aroundLatLng or aroundLatLngViaIP when aroundRadius is not set. The radius is computed automatically using the density of the area. You can retrieve the computed radius in the automaticRadius attribute of the answer.",
           "required": false
         },
@@ -1375,6 +1448,94 @@
           "name": "insidePolygon",
           "type": "String",
           "info": "Search entries inside a given area defined by a set of points (defined by a minimum of 6 floats. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "optionalFilters",
+          "type": "List",
+          "structure":{
+            "name":"filter",
+            "type":"String",
+            "info":"Single filter."
+          },
+          "info": "Create filters for ranking purposes, to rank higher records that contain the filter(s).Example : author:John Doe.",
+          "required": false
+        },
+        {
+          "name": "sumOrFiltersScores",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Determines how to calculate the total score for filtering. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "facetingAfterDistinct",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Force faceting to be applied after de-duplication. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "sortFacetValuesBy",
+          "type": "Select",
+          "options":["count","alpha"],
+          "info": "When using facets, Algolia retrieves a list of matching facet values for each faceted attribute. This parameter controls how the facet values are sorted within each faceted attribute. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "restrictHighlightAndSnippetArrays",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Restrict arrays in highlight and snippet results to items that matched the query.",
+          "required": false
+        },
+        {
+          "name": "aroundLatLngViaIP",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Search for entries around a given location automatically computed from the requester’s IP address.",
+          "required": false
+        },
+        {
+          "name": "disableExactOnAttributes",
+          "type": "List",
+          "structure":{
+            "name":"attribute",
+            "type":"String",
+            "info":"Single attribute."
+          },
+          "info": "List of attributes on which you want to disable computation of the exact ranking criterion.The list must be a subset of the searchableAttributes index setting.searchableAttributes must not be empty nor null for disableExactOnAttributes to be applied.",
+          "required": false
+        },
+        {
+          "name": "enableRules",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.",
+          "required": false
+        },
+        {
+          "name": "ruleContexts",
+          "type": "List",
+          "structure":{
+            "name":"rule",
+            "type":"String",
+            "info":"Single rule."
+          },
+          "info": "Enables contextual rules. Provides a list of contexts for which rules are enabled. Contextual rules matching any of these contexts are eligible, as well as generic rules. When empty, only generic rules are eligible.",
+          "required": false
+        },
+        {
+          "name": "maxFacetHits",
+          "type": "Number",
+          "info": "Maximum number of facet hits to return during a search for facet values.See more in readme.",
+          "required": false
+        },
+        {
+          "name": "percentileComputation",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Whether to include the query in processing time percentile computation.See more in readme.",
           "required": false
         }
       ],
@@ -1579,7 +1740,8 @@
         },
         {
           "name": "createIfNotExists",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "You can avoid an automatic creation of the object. Defaults is `true`",
           "required": false
         }
@@ -1622,6 +1784,17 @@
           "type": "String",
           "info": "Index name to add object for.",
           "required": true
+        },
+        {
+          "name": "attributes",
+          "type": "List",
+          "structure":{
+            "name":"singleAttribute",
+            "type":"string",
+            "info":"Single attribute to retrieve."
+          },
+          "info": "List of attributes to retrieve. If not specified, all retrievable attributes are returned.",
+          "required": false
         }
       ],
       "callbacks": [
@@ -1668,6 +1841,12 @@
               "type": "String",
               "info": "Object ID",
               "required": true
+            },
+            {
+              "name": "attributesToRetrieve",
+              "type": "String",
+              "info": "(array of strings) (optional): List of attributes to retrieve. By default, all retrievable attributes are returned.",
+              "required": false
             }
           ]
         }
@@ -1744,283 +1923,6 @@
           "type": "String",
           "info": "Index name to retrieve settings for.",
           "required": true
-        },
-        {
-          "name": "attributesToIndex",
-          "type": "List",
-          "info": "List of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. See README for more info.",
-          "required": false,
-          "structure": {
-            "name": "attribute",
-            "type": "String",
-            "info": "Attribute to index"
-          }
-        },
-        {
-          "name": "numericAttributesToIndex",
-          "type": "String",
-          "info": "All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.",
-          "required": false
-        },
-        {
-          "name": "attributesForFaceting",
-          "type": "List",
-          "info": "The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.",
-          "required": false,
-          "structure": {
-            "name": "attribute",
-            "type": "String",
-            "info": "Attribute name."
-          }
-        },
-        {
-          "name": "attributeForDistinct",
-          "type": "String",
-          "info": "The attribute name used for the Distinct feature. This feature is similar to the SQL “distinct” keyword: when enabled in query with the distinct=1 parameter, all hits containing a duplicate value for this attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.",
-          "required": false
-        },
-        {
-          "name": "ranking",
-          "type": "List",
-          "info": "Link of Strings. Controls the way results are sorted. See README for more info.",
-          "required": false,
-          "structure": {
-            "name": "control",
-            "type": "String",
-            "info": "Control the way results are sorted."
-          }
-        },
-        {
-          "name": "customRanking",
-          "type": "List",
-          "info": "List of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]",
-          "required": false,
-          "structure": {
-            "name": "part",
-            "type": "String",
-            "info": "Specify part of the ranking."
-          }
-        },
-        {
-          "name": "separatorsToIndex",
-          "type": "String",
-          "info": "Specify the separators (punctuation characters) to index. By default, separators are not indexed. Use `+#` to be able to search Google+ or C#.",
-          "required": false
-        },
-        {
-          "name": "slaves",
-          "type": "String",
-          "info": "JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.",
-          "required": false
-        },
-        {
-          "name": "unretrievableAttributes",
-          "type": "String",
-          "info": "JSON Array Of Strings. List of attributes that cannot be retrieved at query time. This feature allows you to have an attribute that is used for indexing and/or ranking but which cannot be retrieved. This setting will be bypassed if the query is done with the ADMIN API key. Defaults to null.",
-          "required": false
-        },
-        {
-          "name": "allowCompressionOfIntegerArray",
-          "type": "Boolean",
-          "info": "Allows compression of big integer arrays. We recommended to store the list of user ID or rights as an integer array and enable this setting. When enabled the integer array are reordered to reach a better compression ratio. Defaults to false.",
-          "required": false
-        },
-        {
-          "name": "synonyms",
-          "type": "List",
-          "info": "List of synonym strings",
-          "required": false,
-          "structure": {
-            "name": "synonym",
-            "type": "String",
-            "info": "Synonym strings"
-          }
-        },
-        {
-          "name": "placeholders",
-          "type": "JSON",
-          "info": "JSON Hash. This is an advanced use case to define a token substitutable by a list of words without having the original token searchable. See README for more info.",
-          "required": false
-        },
-        {
-          "name": "altCorrections",
-          "type": "JSON",
-          "info": "Specify alternative corrections that you want to consider. See README for more info.",
-          "required": false
-        },
-        {
-          "name": "disableTypoToleranceOnWords",
-          "type": "List",
-          "info": "List of String. Specify a list of words on which the automatic typo tolerance will be disabled.",
-          "required": false,
-          "structure": {
-            "name": "word",
-            "type": "String",
-            "info": "Word on which the automatic typo tolerance will be disabled"
-          }
-        },
-        {
-          "name": "disableTypoToleranceOnAttributes",
-          "type": "JSON",
-          "info": "JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.",
-          "required": false
-        },
-        {
-          "name": "disablePrefixOnAttributes",
-          "type": "JSON",
-          "info": "JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.",
-          "required": false
-        },
-        {
-          "name": "disableExactOnAttributes",
-          "type": "JSON",
-          "info": "JSON Array of String. List of attributes on which you want to disable the computation of “exact” criteria (must be a subset of the attributesToIndex index setting). By default the list is empty.",
-          "required": false
-        },
-        {
-          "name": "minWordSizefor1Typo",
-          "type": "Number",
-          "info": "The minimum number of characters to accept one typo (default = 4).",
-          "required": false
-        },
-        {
-          "name": "minWordSizefor2Typos",
-          "type": "Number",
-          "info": "The minimum number of characters to accept two typos (default = 8).",
-          "required": false
-        },
-        {
-          "name": "hitsPerPage",
-          "type": "Number",
-          "info": "The number of hits per page (default = 10).",
-          "required": false
-        },
-        {
-          "name": "attributesToRetrieve",
-          "type": "JSON",
-          "info": "JSON Array of String. Default list of attributes to retrieve in objects. If set to null, all attributes are retrieved.",
-          "required": false
-        },
-        {
-          "name": "attributesToHighlight",
-          "type": "JSON",
-          "info": "JSON Array of String. Default list of attributes to highlight. If set to null, all indexed attributes are highlighted.",
-          "required": false
-        },
-        {
-          "name": "attributesToSnippet",
-          "type": "JSON",
-          "info": "JSON Array of Strings. Default list of attributes to snippet alongside the number of words to return (syntax is ‘attributeName:nbWords’). If set to null, no snippet is computed.",
-          "required": false
-        },
-        {
-          "name": "queryType",
-          "type": "String",
-          "info": "Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.",
-          "required": false
-        },
-        {
-          "name": "minProximity",
-          "type": "Number",
-          "info": "Configure the precision of the proximity ranking criterion. See README for more info.",
-          "required": false
-        },
-        {
-          "name": "highlightPreTag",
-          "type": "String",
-          "info": "Specify the string that is inserted before the highlighted parts in the query result (defaults to `&lt;em&gt;`).",
-          "required": false
-        },
-        {
-          "name": "highlightPostTag",
-          "type": "String",
-          "info": "Specify the string that is inserted after the highlighted parts in the query result (defaults to `&lt;/em&gt;`).",
-          "required": false
-        },
-        {
-          "name": "optionalWords",
-          "type": "List",
-          "info": "List of Strings. Specify a list of words that should be considered as optional when found in the query",
-          "required": false,
-          "structure": {
-            "name": "word",
-            "type": "String",
-            "info": "Word that should be considered as optional when found in the query"
-          }
-
-        },
-        {
-          "name": "allowTyposOnNumericTokens",
-          "type": "Boolean",
-          "info": "If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to false.",
-          "required": false
-        },
-        {
-          "name": "ignorePlurals",
-          "type": "Boolean",
-          "info": "If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.",
-          "required": false
-        },
-        {
-          "name": "advancedSyntax",
-          "type": "Boolean",
-          "info": "Enable the advanced query syntax. Defaults to 0 (false). See README for more info.",
-          "required": false
-        },
-        {
-          "name": "replaceSynonymsInHighlight",
-          "type": "Boolean",
-          "info": "If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.",
-          "required": false
-        },
-        {
-          "name": "maxValuesPerFacet",
-          "type": "Number",
-          "info": "Limit the number of facet values returned for each facet. For example: maxValuesPerFacet=10 will retrieve max 10 values per facet. Defaults to 100.",
-          "required": false
-        },
-        {
-          "name": "distinct",
-          "type": "Number",
-          "info": "Enable the distinct feature (disabled by default) if the attributeForDistinct index setting is set. This feature is similar to the SQL “distinct” keyword: when enabled in a query with the distinct=1 parameter, all hits containing a duplicate value for theattributeForDistinct attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.",
-          "required": false
-        },
-        {
-          "name": "typoTolerance",
-          "type": "Select",
-          "options": ["true","false","min","strict"],
-          "info": "This setting has four different options: `true`, `false`, `min`, `strict`.",
-          "required": false
-        },
-        {
-          "name": "removeStopWords",
-          "type": "String",
-          "info": "Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code). See README for more info.",
-          "required": false
-        },
-        {
-          "name": "snippetEllipsisText",
-          "type": "String",
-          "info": "String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).",
-          "required": false
-        },
-        {
-          "name": "exactOnSingleWordQuery",
-          "type": "Select",
-          "options": ["none","word","attribute"],
-          "info": "This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.",
-          "required": false
-        },
-        {
-          "name": "alternativesAsExact",
-          "type": "List",
-          "info": "Specify the list of approximation that should be considered as an exact match in the ranking formula. See README for more info.",
-          "required": false,
-          "structure": {
-            "name": "alternative",
-            "type": "String",
-            "info": "Approximation that should be considered as an exact match in the ranking formula."
-          }
         }
       ],
       "callbacks": [
@@ -2055,6 +1957,18 @@
           "type": "String",
           "info": "Index name to retrieve content for.",
           "required": true
+        },
+        {
+          "name": "params",
+          "type": "String",
+          "info": "Search parameters used to filter the index content. If not specified, all objects are returned. Can only be used on the first call.",
+          "required": false
+        },
+        {
+          "name": "cursor",
+          "type": "String",
+          "info": "Cursor indicating the location to resume browsing from. Must match the value returned by the previous call.",
+          "required": false
         }
       ],
       "callbacks": [
@@ -2092,7 +2006,8 @@
         },
         {
           "name": "forwardToSlaves",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If this parameter is true, the change is also applied on slaves of this index.",
           "required": false
         },
@@ -2109,7 +2024,7 @@
         },
         {
           "name": "numericAttributesToIndex",
-          "type": "String",
+          "type": "JSON",
           "info": "All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.",
           "required": false
         },
@@ -2160,32 +2075,22 @@
         },
         {
           "name": "slaves",
-          "type": "String",
+          "type": "JSON",
           "info": "JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.",
           "required": false
         },
         {
           "name": "unretrievableAttributes",
-          "type": "String",
+          "type": "JSON",
           "info": "JSON Array Of Strings. List of attributes that cannot be retrieved at query time. This feature allows you to have an attribute that is used for indexing and/or ranking but which cannot be retrieved. This setting will be bypassed if the query is done with the ADMIN API key. Defaults to null.",
           "required": false
         },
         {
           "name": "allowCompressionOfIntegerArray",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Allows compression of big integer arrays. We recommended to store the list of user ID or rights as an integer array and enable this setting. When enabled the integer array are reordered to reach a better compression ratio. Defaults to false.",
           "required": false
-        },
-        {
-          "name": "synonyms",
-          "type": "List",
-          "info": "List of synonym strings",
-          "required": false,
-          "structure": {
-            "name": "synonym",
-            "type": "String",
-            "info": "Synonym strings"
-          }
         },
         {
           "name": "placeholders",
@@ -2219,7 +2124,7 @@
         {
           "name": "disablePrefixOnAttributes",
           "type": "JSON",
-          "info": "JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.",
+          "info": "JSON Array of Strings.List of attributes on which you want to disable prefix matching",
           "required": false
         },
         {
@@ -2302,25 +2207,29 @@
         },
         {
           "name": "allowTyposOnNumericTokens",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to false.",
           "required": false
         },
         {
           "name": "ignorePlurals",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.",
           "required": false
         },
         {
           "name": "advancedSyntax",
-          "type": "Boolean",
-          "info": "Enable the advanced query syntax. Defaults to 0 (false). See README for more info.",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Enable the advanced query syntax. Defaults to 0 (false).",
           "required": false
         },
         {
           "name": "replaceSynonymsInHighlight",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.",
           "required": false
         },
@@ -2346,7 +2255,7 @@
         {
           "name": "removeStopWords",
           "type": "String",
-          "info": "Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code). See README for more info.",
+          "info": "Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code).",
           "required": false
         },
         {
@@ -2885,13 +2794,48 @@
         },
         {
           "name": "requests",
-          "type": "List",
-          "structure":{
-            "name": "request",
-            "type": "JSON",
-            "info": "Single request"
-          },
+          "type": "JSON",
           "info": "Batch operations",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
+      "name": "deleteRecordByQuery",
+      "description": "Delete all records matching the query.This endpoint doesn’t support all the options of a query, only its filters (numeric, facet, or tag) and geo queries. It also doesn’t accept empty filters or query.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key.",
+            "required": true
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID.",
+            "required": true
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index Name",
+          "required": true
+        },
+        {
+          "name": "params",
+          "type": "String",
+          "info": "Delete query.Example:facetFilters=category:test.",
           "required": true
         }
       ],

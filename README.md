@@ -2,7 +2,7 @@
 
 # Algolia Package
 The Algolia API includes autocomplete functionality and an instant results display.
-* Domain: algolia.com
+* Domain: [algolia.com](https://www.algolia.com/)
 * Credentials: apiKey, appId
 
 ## How to get credentials:
@@ -18,6 +18,17 @@ The Algolia API includes autocomplete functionality and an instant results displ
  |List|Simple array|```["123", "sample"]```
  |Select|String with predefined values|```sample```
  |Array|Array of objects|```[{"Second name":"123","Age":"12","Photo":"sdf","Draft":"sdfsdf"},{"name":"adi","Second name":"bla","Age":"4","Photo":"asfserwe","Draft":"sdfsdf"}] ```
+
+## Algolia.searchMultipleIndexes
+This method allows to send multiple search queries, potentially targeting multiple indices, in a single API call.
+
+| Field | Type       | Description
+|-------|------------|----------
+| apiKey| credentials| Algolia Application Key.
+| appId | credentials| Algolia Application ID.
+| requests| Array     | List of queries. Results will be received in the same order as the queries in the requests attribute. Each query is described by the following attributes: indexName: index targeted by the query; params: URL-encoded list of search parameters.
+| strategy | credentials| Algolia Application ID.Allows optimizing execution of the queries by potentially skipping some of them. The following values are allowed: none: Execute all queries. stopIfEnoughMatches: Execute queries one by one, but stop as soon as one query matches at least as many hits as its hitsPerPage parameter. More formally: query N is executed only if all of queries 0 through N-1 had strictly less hits than their requested number of hits per page. Let’s illustrate stopIfEnoughMatches: Let’s say you send 3 queries with hitsPerPage set to 50, 5 and 20 (respectively). There are different possible scenarios: `Run query #1` 50+ hits are found: skip to step 4 otherwise: continue with query #2 `Run query #2` 5+ hits where found: skip to step 4 otherwise: continue with query #3 `Run query #3` This is the last query, so we don’t care about its outcome Return results `Return actual results` for queries that were processed Return empty hits for queries that were skipped, along with a processed attribute set to false.
+
 
 ## Algolia.getLogs
 Return last logs.
@@ -329,7 +340,6 @@ Return objects that match the query.
 | advancedSyntax                  | String     | Enable the advanced query syntax. Defaults to 0 (false).
 | analytics                       | Boolean    | If set to false, this query will not be taken into account for the Analytics. Defaults to true.
 | analyticsTags                   | String     | Comma-separated string list. If set, tag your query with the specified identifiers. Tags can then be used in the Analytics to analyze a subset of searches only.
-| synonyms                        | Boolean    | If set to false, this query will not use synonyms defined in configuration. Defaults to true.
 | replaceSynonymsInHighlight      | Boolean    | If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.
 | optionalWords                   | String     | Specify a list of words that should be considered as optional when found in the query. The list of words is comma separated. This list will be appended to the one defined in your index settings.
 | minProximity                    | String     | Configure the precision of the `proximity` ranking criterion. By default, the minimum (and best) proximity value distance between 2 matching words is `1`. Setting it to `2` (or `3`) would allow 1 (or `2`) words to be found between the matching words without degrading the proximity ranking value. Considering the query "javascript framework”, if you set `minProximity=2` the records "JavaScript framework” and "JavaScript charting framework” will get the same proximity score, even if the second one contains a word between the 2 matching words. Defaults to 1. _Note_: the maximum minProximity that can be set is `7`. Above, the engine will consider the proximity rule from the rankignFormula as disabled.
@@ -340,8 +350,8 @@ Return objects that match the query.
 | alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula:ignorePlurals: alternative word added by the ignore plurals feature singleWordSynonym: single word synonym (For example "NY” = "NYC”)multiWordsSynonym: synonym over multiple words (For example "NY” = "New York”). The default value is `ignorePlurals`, `singleWordSynonym`.
 | page                            | Number     | Pagination parameter used to select the page to retrieve. Page is zero-based and defaults to 0. Thus, to retrieve the 10th page you need to set page=9
 | hitsPerPage                     | Number     | Pagination parameter used to select the number of hits per page. Defaults to 20.
-| offset                          | Number     | Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
-| length                          | Number     | Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
+| offset                          | Number     | Specify the offset of the first hit to return.Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
+| length                          | Number     | Set the number of hits to retrieve (used only with offset).Instead of page/hitsPerPage, you can use offset/length to specify the number of hits you want to retrieve and from which offset you want to start.
 | attributesToRetrieve            | List     | List of object attributes you want to retrieve (let you minimize the answer size). List of object attributes you want to retrieve (let you minimize the answer size). Attributes are separated with a comma (for example "name,address" ), you can also use a JSON string array encoding (for example encodeURIComponent('["name","address"]') ). By default, all attributes are retrieved. You can also use * to retrieve all values when an attributesToRetrieve setting is specified for your index.
 | attributesToHighlight           | String     | List of attributes you want to highlight according to the query. Attributes are separated by a comma. You can also use a JSON string array encoding (for example `encodeURIComponent('["name","address"]') )`. If an attribute has no match for the query, the raw value is returned. By default all indexed text attributes are highlighted. You can use * if you want to highlight all textual attributes. Numerical attributes are not highlighted. A matchLevel is returned for each highlighted attribute and can contain: `full`: if all the query terms were found in the attribute; `partial`: if only some of the query terms were found; `none`: if none of the query terms were found
 | attributesToSnippet             | String     | List of attributes to snippet alongside the number of words to return (syntax is 'attributeName:nbWords').Attributes are separated by a comma (Example: `attributesToSnippet=name:10`, `content:10` ). You can also use a JSON string array encoding (Example: `encodeURIComponent('["name:10","content:10"]'` )) By default no snippet is computed.
@@ -363,6 +373,18 @@ Return objects that match the query.
 | minimumAroundRadius             | String     | Define the minimum radius used for aroundLatLng or aroundLatLngViaIP when aroundRadius is not set. The radius is computed automatically using the density of the area. You can retrieve the computed radius in the automaticRadius attribute of the answer.
 | insideBoundingBox               | String     | Search for entries inside a given area defined by the two extreme points of a rectangle (defined by 4 floats: p1Lat,p1Lng,p2Lat, p2Lng, for example: insideBoundingBox=47.3165,4.9665,47.3424,5.0201). At indexing, you should specify geoloc of an object with the _geoloc attribute (in the form "_geoloc":{"lat":48.853409, "lng":2.348800} or "_geoloc":[{"lat":48.853409, "lng":2.348800},{"lat":48.547456, "lng":2.972075}] if you have several geo-locations in your record).
 | insidePolygon                   | String     | Search entries inside a given area defined by a set of points (defined by a minimum of 6 floats: p1Lat,p1Lng,p2Lat,p2Lng,p3Lat,p3Long). For example, "insidePolygon=47.3165, 4.9665, 47.3424, 5.0201, 47.32, 4.98"). At indexing, you should specify the geo location of an object with the _geoloc attribute (in the form "_geoloc":{"lat":48.853409, "lng":2.348800} or "_geoloc":[{"lat":48.853409, "lng":2.348800},{"lat":48.547456, "lng":2.972075}] if you have several geo-locations in your record)`. To make an UNION of multiple polygons, you can use this syntax: insidePolygon=[[42.01,-124.31, 42,-120.00 ,39.01,-120.00 ,35,-114.63], [46.01,-124.31, 42,-150.00 ,39.01,-120.00 ,35,-114.63]].
+| optionalFilters     | List     | Create filters for ranking purposes, to rank higher records that contain the filter(s)
+| sumOrFiltersScores      | Boolean     | Determines how to calculate the total score for filtering When sumOrFiltersScores is false, max score will be kept. When sumOrFiltersScores is true, score will be summed. False means that the total score of a record is the maximum score of an individual filter. Setting it to true changes the total score by adding together the scores of each filter found. For more on scoring, check out our filter scoring overview.(s)
+| facetingAfterDistinct    | Boolean     | Force faceting to be applied after de-duplication. When using the distinct setting in combination with faceting, facet counts may be higher than expected. This is because the engine computes faceting before applying de-duplication (distinct). When facetingAfterDistinct is set to true, you force faceting to be computed after de-duplication has been applied.You should not use facetingAfterDistinct=true if you don’t have the same facet values in all records sharing the same distinct key (you would get inconsistent results). facetingAfterDistinct can only be set at query time; it can’t be added as a default setting of the index. facetingAfterDistinct will be ignored if you also set typoTolerance to either strict or min.
+| sortFacetValuesBy    | String     | When using facets, Algolia retrieves a list of matching facet values for each faceted attribute. This parameter controls how the facet values are sorted within each faceted attribute. Supported options are: count (default): Facet values are sorted by decreasing count, the count being the number of records containing this facet value in the results of the query. alpha: Facet values are sorted by increasing alphabetical order.
+| restrictHighlightAndSnippetArrays    | Boolean     | Restrict arrays in highlight and snippet results to items that matched the query. When false, all array items are highlighted/snippeted. When true, only array items that matched at least partially are highlighted/snippeted.
+| aroundLatLngViaIP    | String     | Search for entries around a given location automatically computed from the requester’s IP address.
+| disableExactOnAttributes    | String     | List of attributes on which you want to disable computation of the exact ranking criterion The list must be a subset of the searchableAttributes index setting. searchableAttributes must not be empty nor null for disableExactOnAttributes to be applied.
+| enableRules    | String     | Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.
+| ruleContexts    | String     | Enables contextual rules. Provides a list of contexts for which rules are enabled. Contextual rules matching any of these contexts are eligible, as well as generic rules. When empty, only generic rules are eligible. For performance reasons, you may activate a maximum of 10 contexts at query time. (You may use an unlimited number of contexts in your rules.)
+| maxFacetHits    | Number     | Maximum number of facet hits to return during a search for facet values. Does not apply to regular search queries. For performance reasons, the maximum allowed number of returned values is 100. Any value outside the range [1, 100] will be rejected.
+| percentileComputation    | Boolean     | Whether to include the query in processing time percentile computation. When true, the API records the processing time of the search query and includes it when computing the 90% and 99% percentiles, available in your Algolia dashboard. When false, the search query is excluded from percentile computation.
+
 
 ## Algolia.deleteSingleIndex
 This method deletes an existing index.
@@ -502,6 +524,7 @@ This method returns one object from the index.
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to add object for.
 | objectId     | String     | Index name to add object for.
+| attributes     | List     | List of attributes to retrieve. If not specified, all retrievable attributes are returned.
 
 ## Algolia.getObjects
 This method allows to retrieve several objects with one API call.
@@ -515,8 +538,8 @@ This method allows to retrieve several objects with one API call.
 #### `requests` format
 ```json
 [
-	{ "indexName": "index1", "objectID": "obj1" },
-	{ "indexName": "index1", "objectID": "obj2" }
+	{ "indexName": "index1", "objectID": "obj1","attributesToRetrieve":["objectID"] },
+	{ "indexName": "index1", "objectID": "obj2","attributesToRetrieve":["objectID"] }
 ]
 ```
 
@@ -538,100 +561,6 @@ This method retrieve index settings.
 | apiKey                          | credentials| Algolia Application Key.
 | appId                           | credentials| Algolia Application ID.
 | indexName                       | String     | Index name to retrieve settings for.
-| attributesToIndex               | List       | JSON Array of Strings. The list of fields you want to index. If set to null, all textual attributes of your objects are indexed, but you should update it to get optimal results. This parameter has two important uses: __Limit the attributes to index__. For example if you store a binary image in base64, you want to store it and be able to retrieve it but you don’t want to search in the base64 string. __Control part of the ranking__ (see the ranking parameter for full explanation). Matches in attributes at the beginning of the list will be considered more important than matches in attributes further down the list. In one attribute, matching text at the beginning of the attribute will be considered more important than text after, you can disable this behavior if you add your attribute inside unordered(AttributeName), for example: attributesToIndex:["title", "unordered(text)"]._NOTE:_You can decide to have the same priority for several attributes by passing them in the same string using comma as separator. For example:  title and alternative_title have the same priority in this example: attributesToIndex:`["title,alternative_title", "text"]`
-| numericAttributesToIndex        | List     | All numerical attributes are automatically indexed as numerical filters. If you don’t need filtering on some of your numerical attributes, please consider sending them as strings to speed up the indexing. If you only need to filter on a numeric value with the operator = or !=, you can speed up the indexing by specifying the attribute with equalOnly(AttributeName). The other operators will be disabled.
-| attributesForFaceting           | List       | The list of fields you want to use for faceting. All strings in the attribute selected for faceting are extracted and added as a facet. By default, no attribute is used for faceting.
-| attributeForDistinct            | String     | The attribute name used for the Distinct feature. This feature is similar to the SQL "distinct” keyword: when enabled in query with the distinct=1 parameter, all hits containing a duplicate value for this attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
-| ranking                         | List       | Controls the way results are sorted. We have nine available criteria: __`typo`__: sort according to number of typos; __`geo`__: sort according to decreasing distance when performing a geo-location based search; __`words`__: sort according to the number of query words matched by decreasing order. This parameter is useful when you use optionalWords query parameter to have results with the most matched words first; __`proximity`__: sort according to the proximity of query words in hits; __`attribute`__: sort according to the order of attributes defined by attributesToIndex; __`exact`__: if the user query contains one word: sort objects having an attribute that is exactly the query word before others. For example if you search for the "V” TV show, you want to find it with the "V” query and avoid to have all popular TV show starting by the v letter before it if the user query contains multiple words: sort according to the number of words that matched exactly (and not as a prefix); __`custom`__: sort according to a user defined formula set in customRanking attribute; __`asc(attributeName)`__: sort according to a numeric attribute by ascending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); __`desc(attributeName)`__: sort according to a numeric attribute by descending order. attributeName can be the name of any numeric attribute of your records (integer, a double or boolean); The standard order is `["typo”, "geo”, "words”, "proximity”, "attribute”, "exact”, "custom”]`.
-| customRanking                   | JSON       | JSON Array of Strings. Lets you specify part of the ranking. The syntax of this condition is an array of strings containing attributes prefixed by asc (ascending order) or desc (descending order) operator. For example: `customRanking`: [`desc(population)`, `asc(name)`]
-| separatorsToIndex               | String     | Specify the separators (punctuation characters) to index. By default, separators are not indexed. Use `+#` to be able to search Google+ or C#.
-| slaves                          | String     | JSON Array of String. The list of indexes on which you want to replicate all write operations. In order to get response times in milliseconds, we pre-compute part of the ranking during indexing. If you want to use different ranking configurations depending of the use-case, you need to create one index per ranking configuration. This option enables you to perform write operations only on this index, and to automatically update slave indexes with the same operations.
-| unretrievableAttributes         | String     | JSON Array Of Strings. List of attributes that cannot be retrieved at query time. This feature allows you to have an attribute that is used for indexing and/or ranking but which cannot be retrieved. This setting will be bypassed if the query is done with the ADMIN API key. Defaults to null.
-| allowCompressionOfIntegerArray  | Boolean    | Allows compression of big integer arrays. We recommended to store the list of user ID or rights as an integer array and enable this setting. When enabled the integer array are reordered to reach a better compression ratio. Defaults to false.
-| synonyms                        | JSON       | An array of array of string considered as equal. For example, you may want to retrieve your black ipad record when your users are searching for dark ipad, even if the dark word is not part of the record: so you need to configure dark as a synonym of black. For example: "synonyms": `[ [ "black", "dark" ], [ "small", "little", "mini" ], ... ]`. Synonym feature also supports multi-words expression like "synonyms": [ ["NY", "New York"] ]`.
-| placeholders                    | JSON       | This is an advanced use case to define a token substitutable by a list of words without having the original token searchable. It is defined by a hash associating placeholders to lists of substitutable words. For example: **"placeholders": { "": ["1", "2", "3", ..., "9999"]}** placeholder to be able to match all street numbers (we use the `<` `>` tag syntax to define placeholders in an attribute). For example: Push a record with the placeholder: `{ "name" : "Apple Store", "address" : "<streetnumber> Opera street, Paris" }`. Configure the placeholder in your index settings: `"placeholders": { "<streetnumber>" : ["1", "2", "3", "4", "5", ... ], ... }`.
-| altCorrections                  | JSON       | Specify alternative corrections that you want to consider. Each alternative correction is described by an object containing three attributes:`word`: the word to correct; `correction`: the corrected word; `nbTypos`: the number of typos (1 or 2) that will be considered for the ranking algorithm (1 typo is better than 2 typos). For example: "altCorrections": [ { "word" : "foot", "correction": "feet", "nbTypos": 1}, { "word": "feet", "correction": "foot", "nbTypos": 1}].
-| disableTypoToleranceOnWords     | JSON       | JSON Array of String. Specify a list of words on which the automatic typo tolerance will be disabled.
-| disableTypoToleranceOnAttributes| JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
-| disablePrefixOnAttributes       | JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
-| disableExactOnAttributes        | JSON       | JSON Array of String. List of attributes on which you want to disable the computation of "exact” criteria (must be a subset of the attributesToIndex index setting). By default the list is empty.
-| minWordSizefor1Typo             | Number     | The minimum number of characters to accept one typo (default = 4).
-| minWordSizefor2Typos            | Number     | The minimum number of characters to accept two typos (default = 8).
-| hitsPerPage                     | Number     | The number of hits per page (default = 10).
-| attributesToRetrieve            | JSON       | JSON Array of String. Default list of attributes to retrieve in objects. If set to null, all attributes are retrieved.
-| attributesToHighlight           | JSON       | JSON Array of String. Default list of attributes to highlight. If set to null, all indexed attributes are highlighted.
-| attributesToSnippet             | JSON       | JSON Array of Strings. Default list of attributes to snippet alongside the number of words to return (syntax is ‘attributeName:nbWords’). If set to null, no snippet is computed.
-| queryType                       | Select     | Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.
-| minProximity                    | String     | Configure the precision of the `proximity` ranking criterion. By default, the minimum (and best) proximity value distance between 2 matching words is `1`. Setting it to `2` (or `3`) would allow 1 (or `2`) words to be found between the matching words without degrading the proximity ranking value. Considering the query "javascript framework”, if you set `minProximity=2` the records "JavaScript framework” and "JavaScript charting framework” will get the same proximity score, even if the second one contains a word between the 2 matching words. Defaults to 1. _Note_: the maximum minProximity that can be set is `7`. Above, the engine will consider the proximity rule from the rankignFormula as disabled.
-| highlightPreTag                 | String     | Specify the string that is inserted before the highlighted parts in the query result (defaults to `&lt;em&gt;`).
-| highlightPostTag                | String     | Specify the string that is inserted after the highlighted parts in the query result (defaults to `&lt;/em&gt;`).
-| optionalWords                   | JSON       | JSON Array of Strings. Specify a list of words that should be considered as optional when found in the query
-| allowTyposOnNumericTokens       | Boolean    | If set to false, disable typo-tolerance on numeric tokens (=numbers) in the query word. For example the query `304` will match with `30450`, but not with `40450` that would have been the case with typo-tolerance enabled. Can be very useful on serial numbers and zip codes searches. Defaults to false.
-| ignorePlurals                   | Boolean    | If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.
-| advancedSyntax                  | Boolean    | Enable the advanced query syntax. Defaults to 0 (false). **Phrase query**: a phrase query defines a particular sequence of terms. A phrase query is build by Algolia’s query parser for words surrounded by ". For example, "search engine" will retrieve records having search next to engine only. Typo-tolerance is disabled on phrase queries. **Prohibit operator**: The prohibit operator excludes records that contain the term after the - symbol. For example search -engine will retrieve records containing search but not engine.
-| replaceSynonymsInHighlight      | Boolean    | If set to false, words matched via synonyms expansion will not be replaced by the matched synonym in the highlighted result. Defaults to true.
-| maxValuesPerFacet               | Number     | Limit the number of facet values returned for each facet. For example: maxValuesPerFacet=10 will retrieve max 10 values per facet. Defaults to 100.
-| distinct                        | Number     | Enable the distinct feature (disabled by default) if the attributeForDistinct index setting is set. This feature is similar to the SQL "distinct” keyword: when enabled in a query with the distinct=1 parameter, all hits containing a duplicate value for theattributeForDistinct attribute are removed from results. For example, if the chosen attribute is show_name and several hits have the same value for show_name, then only the best one is kept and others are removed.
-| typoTolerance                   | String     | This setting has four different options: `true`, `false`, `min`, `strict`.
-| removeStopWords                 | String     | Remove stop words from query before executing it. It can be a boolean: enable or disable all 41 supported languages or a string array with the list of languages you have in your record (using language iso code).
-| snippetEllipsisText             | String     | String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).
-| exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
-| alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula.
-
-#### `attributesToIndex` example:
-```json
-"attributesToIndex": ["title,alternative_title", "text"]`
-```
-
-#### `attributesForFaceting` example:
-```json
-"attributesForFaceting": ["filterOnly(attributeName)"]
-```
-#### `ranking` example:
-```json
-"ranking": ["typo", "geo", "words", "custom"]
-```
-#### `customRanking` example:
-```json
-"customRanking": ["desc(population)", "asc(name)"]
-```
-#### `synonyms` example:
-```json
-"synonyms": [ [ "black", "dark" ], [ "small", "little", "mini" ], ... ]
-```
-
-#### `placeholders` example:
-```json
-"placeholders": { "name" : "Apple Store", "address" : "<streetnumber> Opera street, Paris" }
-```
-
-#### `altCorrections` example:
-```json
-"altCorrections": [
-	{ "word" : "foot", "correction": "feet", "nbTypos": 1},
-	{ "word": "feet", "correction": "foot", "nbTypos": 1}
-]
-```
-
-#### `disableTypoToleranceOnWords` example:
-```json
-"disableTypoToleranceOnWords": ["word2", "word1"]`
-```
-
-#### `disableTypoToleranceOnAttributes`, `disablePrefixOnAttributes`, `disableExactOnAttributes`, `attributesToHighlight`, `attributesToSnippet`, `attributesToRetrieve`, `attributesToHighlight`, `attributesToSnippet` example:
-```json
-"...": ["attr1", "attr2"]`
-```
-
-#### `optionalWords` example:
-```json
-"optionalWords": ["word2", "word1"]`
-```
-
-#### `alternativesAsExact` example:
-```json
-"alternativesAsExact": ["ignorePlurals", "singleWordSynonym", ]
-```
 
 ## Algolia.getIndexContent
 This method allows you to retrieve all index content (for backup, SEO or analytics purpose). It can retrieve up to 1,000 records per call and supports full text search and filters.
@@ -641,6 +570,8 @@ This method allows you to retrieve all index content (for backup, SEO or analyti
 | apiKey       | credentials| Algolia Application Key.
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to retrieve content for.
+| params    | String     | Search parameters used to filter the index content. If not specified, all objects are returned. Can only be used on the first call.
+| cursor    | String     | Cursor indicating the location to resume browsing from. Must match the value returned by the previous call.
 
 ## Algolia.changeIndexSettings
 This method updates part of index settings, the list of attributes and their behavior are listed in the get index settings API.
@@ -666,7 +597,7 @@ This method updates part of index settings, the list of attributes and their beh
 | altCorrections                  | JSON       | Specify alternative corrections that you want to consider.
 | disableTypoToleranceOnWords     | JSON       | JSON Array of String. Specify a list of words on which the automatic typo tolerance will be disabled.
 | disableTypoToleranceOnAttributes| JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
-| disablePrefixOnAttributes       | JSON       | JSON Array of Strings. List of attributes on which you want to disable typo tolerance (must be a subset of the attributesToIndex index setting). By default the list is empty.
+| disablePrefixOnAttributes       | JSON       | List of attributes on which you want to disable prefix matching
 | disableExactOnAttributes        | JSON       | JSON Array of String. List of attributes on which you want to disable the computation of "exact” criteria (must be a subset of the attributesToIndex index setting). By default the list is empty.
 | minWordSizefor1Typo             | Number     | The minimum number of characters to accept one typo (default = 4).
 | minWordSizefor2Typos            | Number     | The minimum number of characters to accept two typos (default = 8).
@@ -878,3 +809,12 @@ This method searches for values of a given facet, optionally restricting the ret
 ```json
 "params": "facetQuery=${facetQuery}"
 ```
+## Algolia.deleteRecordByQuery
+Delete all records matching the query.This endpoint doesn’t support all the options of a query, only its filters (numeric, facet, or tag) and geo queries. It also doesn’t accept empty filters or query.
+
+| Field        | Type       | Description
+|--------------|------------|----------
+| apiKey       | credentials| Algolia Application Key.
+| appId        | credentials| Algolia Application ID.
+| indexName    | String     | Index name.
+| params          | String     | Delete query.Example:facetFilters=category:test.
