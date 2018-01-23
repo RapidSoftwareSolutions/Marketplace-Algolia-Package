@@ -1266,7 +1266,8 @@
         },
         {
           "name": "removeWordsIfNoResults",
-          "type": "String",
+          "type": "Select",
+          "options":["none","lastWords","firstWords","allOptional"],
           "info": "Configure the way query words are removed when the query doesn’t retrieve any results. See README for more info.",
           "required": false
         },
@@ -2003,6 +2004,58 @@
           "type": "String",
           "info": "Index name to retrieve settings for.",
           "required": true
+        },
+        {
+          "name": "camelCaseAttributes",
+          "type": "String",
+          "info": "Comma-separated list of attributes on which to do a decomposition of camel case words.See more in readme.",
+          "required": false
+        },
+        {
+          "name": "maxFacetHits",
+          "type": "Number",
+          "info": "Maximum number of facet hits to return during a search for facet values.See more in readme.",
+          "required": false
+        },
+        {
+          "name": "responseFields",
+          "type": "String",
+          "info": "Comma-separated string list. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "enableRules",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.",
+          "required": false
+        },
+        {
+          "name": "removeWordsIfNoResults",
+          "type": "Select",
+          "options":["none","lastWords","firstWords","allOptional"],
+          "info": "Configure the way query words are removed when the query doesn’t retrieve any results. See README for more info.",
+          "required": false
+        },
+        {
+          "name": "paginationLimitedTo",
+          "type": "Number",
+          "info": "Set the maximum number of hits accessible via pagination. This can be set at indexing time, to define a default. The index value can also be overidden at query time. By default, this parameter is set to 1000 to guarantee good performance.",
+          "required": false
+        },
+        {
+          "name": "restrictHighlightAndSnippetArrays",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "Restrict arrays in highlight and snippet results to items that matched the query.",
+          "required": false
+        },
+        {
+          "name": "sortFacetValuesBy",
+          "type": "Select",
+          "options":["count","alpha"],
+          "info": "When using facets, Algolia retrieves a list of matching facet values for each faceted attribute. This parameter controls how the facet values are sorted within each faceted attribute. See README for more info.",
+          "required": false
         },
         {
           "name": "forwardToSlaves",
@@ -2867,12 +2920,6 @@
             "required": true
         },
         {
-          "name": "indexName",
-          "type": "String",
-          "info": "Index Name",
-          "required": true
-        },
-        {
           "name": "requests",
           "type": "Array",
           "structure":[{
@@ -2895,6 +2942,66 @@
           }
         ],
           "info": "List of operations to batch.See more in readme.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
+    },
+    {
+      "name": "batchSynonymsWriteOperations",
+      "description": "Create/update multiple synonym objects at once, potentially replacing the entire list of synonyms if replaceExistingSynonyms is true.You should always use replaceExistingSynonyms to atomically replace all your synonyms on a production index. This is the only way to ensure your index always has a list of synonyms to use during the indexing of the new list.",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key.",
+            "required": true
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID.",
+            "required": true
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index Name",
+          "required": true
+        },
+        {
+          "name": "forwardToReplicas",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "(URL parameter) Replicate the new/updated synonyms to all replica indices.",
+          "required": true
+        },
+        {
+          "name": "replaceExistingSynonyms",
+          "type": "Select",
+          "options":["true","false"],
+          "info": "(URL parameter) Replace all synonyms of the index with the ones sent with this request.",
+          "required": true
+        },
+        {
+          "name": "requests",
+          "type": "List",
+          "structure":{
+            "name":"singleBatch",
+            "type":"JSON",
+            "info":"Json body.",
+            "required":true
+          },
+          "info": "The body must be a JSON array of synonym objects. The syntax of each object is the same as in Create/update a synonym. See more in readme.",
           "required": true
         }
       ],

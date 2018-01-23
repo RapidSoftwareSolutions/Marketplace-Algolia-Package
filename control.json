@@ -498,7 +498,7 @@
             "JSON|optionalWords": "optionalWords",
             "Boolean|allowTyposOnNumericTokens": "allowTyposOnNumericTokens",
             "Boolean|ignorePlurals": "ignorePlurals",
-            "Number|advancedSyntax": "advancedSyntax",
+            "Boolean|advancedSyntax": "advancedSyntax",
             "Boolean|replaceSynonymsInHighlight": "replaceSynonymsInHighlight",
             "Number|maxValuesPerFacet": "maxValuesPerFacet",
             "Number|distinct": "distinct",
@@ -506,7 +506,15 @@
             "String|removeStopWords": "removeStopWords",
             "String|snippetEllipsisText": "snippetEllipsisText",
             "String|exactOnSingleWordQuery": "exactOnSingleWordQuery",
-            "String|alternativesAsExact": "alternativesAsExact"
+            "String|alternativesAsExact": "alternativesAsExact",
+            "String|sortFacetValuesBy":"sortFacetValuesBy",
+            "Boolean|restrictHighlightAndSnippetArrays":"restrictHighlightAndSnippetArrays",
+            "Number|paginationLimitedTo":"paginationLimitedTo",
+            "String|removeWordsIfNoResults":"removeWordsIfNoResults",
+            "Boolean|enableRules":"enableRules",
+            "String|responseFields": "responseFields",
+            "Number|maxFacetHits":"maxFacetHits",
+            "String|camelCaseAttributes":"camelCaseAttributes"
         }
     },
     "copySingleIndex": {
@@ -650,8 +658,19 @@
         "args": {
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
-            "String|indexName": "$!indexName",
             "JSON|requests": "$requests"
+        }
+    }, 
+    "batchSynonymsWriteOperations": {
+        "url": "/1/indexes/:indexName/synonyms/batch",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
+            "String|indexName": "$!indexName",
+            "Raw|requests": "$requests",
+            "Boolean|forwardToReplicas":"forwardToReplicas",
+            "Boolean|replaceExistingSynonyms":"replaceExistingSynonyms"
         }
     }
 }

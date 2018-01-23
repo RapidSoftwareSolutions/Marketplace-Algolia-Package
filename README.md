@@ -380,7 +380,7 @@ Return objects that match the query.
 | restrictHighlightAndSnippetArrays    | Boolean     | Restrict arrays in highlight and snippet results to items that matched the query. When false, all array items are highlighted/snippeted. When true, only array items that matched at least partially are highlighted/snippeted.
 | aroundLatLngViaIP    | String     | Search for entries around a given location automatically computed from the requester’s IP address.
 | disableExactOnAttributes    | String     | List of attributes on which you want to disable computation of the exact ranking criterion The list must be a subset of the searchableAttributes index setting. searchableAttributes must not be empty nor null for disableExactOnAttributes to be applied.
-| enableRules    | String     | Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.
+| enableRules    | Boolean     | Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.
 | ruleContexts    | String     | Enables contextual rules. Provides a list of contexts for which rules are enabled. Contextual rules matching any of these contexts are eligible, as well as generic rules. When empty, only generic rules are eligible. For performance reasons, you may activate a maximum of 10 contexts at query time. (You may use an unlimited number of contexts in your rules.)
 | maxFacetHits    | Number     | Maximum number of facet hits to return during a search for facet values. Does not apply to regular search queries. For performance reasons, the maximum allowed number of returned values is 100. Any value outside the range [1, 100] will be rejected.
 | percentileComputation    | Boolean     | Whether to include the query in processing time percentile computation. When true, the API records the processing time of the search query and includes it when computing the 90% and 99% percentiles, available in your Algolia dashboard. When false, the search query is excluded from percentile computation.
@@ -621,7 +621,14 @@ This method updates part of index settings, the list of attributes and their beh
 | snippetEllipsisText             | String     | String used as an ellipsis indicator when a snippet is truncated. Default: `…` (U+2026 HORIZONTAL ELLIPSIS).
 | exactOnSingleWordQuery          | String     | This parameter control how the exact ranking criterion is computed when the query contains one word. There is three different values: `none`, `word`, `attribute`.
 | alternativesAsExact             | String     | Specify the list of approximation that should be considered as an exact match in the ranking formula.
-
+| sortFacetValuesBy    | String     | When using facets, Algolia retrieves a list of matching facet values for each faceted attribute. This parameter controls how the facet values are sorted within each faceted attribute. Supported options are: count (default): Facet values are sorted by decreasing count, the count being the number of records containing this facet value in the results of the query. alpha: Facet values are sorted by increasing alphabetical order.
+| restrictHighlightAndSnippetArrays    | Boolean     | Restrict arrays in highlight and snippet results to items that matched the query. When false, all array items are highlighted/snippeted. When true, only array items that matched at least partially are highlighted/snippeted.
+| paginationLimitedTo  | Number     | Set the maximum number of hits accessible via pagination. This can be set at indexing time, to define a default. The index value can also be overidden at query time. By default, this parameter is set to 1000 to guarantee good performance. We recommend keeping the default value to guarantee excellent performance. Increasing the pagination limit will have a direct impact on the performance of search queries. A too high value will also make it very easy for anyone to retrieve (“scrape”) your entire dataset.
+| removeWordsIfNoResults          | String     | Configure the way query words are removed when the query doesn’t retrieve any results. Configure the way query words are removed when the query doesn’t retrieve any results. This option can be used to avoid having an empty result page. There are four different options: `lastWords`: when a query does not return any result, the last word will be added as optionalWords (the process is repeated with the n-1 word, n-2 word, … until there is results). This option is particularly useful on e-commerce websites `firstWords`: when a query does not return any result, the first word will be added as optionalWords (the process is repeated with the second word, third word, … until there is results). This option is useful on address search; `allOptional`: When a query does not return any result, a second trial will be made with all words as optional (which is equivalent to transforming the AND operand between query terms in a OR operand); `none`: No specific processing is done when a query does not return any result. (Defaults to `none`)
+| enableRules    | Boolean     | Whether rules should be globally enabled. This is a global switch that affects all rules. When true, rules processing is enabled: rules may match the query. When false, rules processing is disabled: no rule will match the query.
+| responseFields                  | String     | Choose which fields the response will contain. Applies to search and browse queries. By default, all fields are returned. If this parameter is specified, only the fields explicitly listed will be returned, unless * is used, in which case all fields are returned. Specifying an empty list or unknown field names is an error. This parameter is mainly intended to limit the response size. For example, for complex queries, echoing of request parameters in the response’s params field can be undesirable.
+| maxFacetHits    | Number     | Maximum number of facet hits to return during a search for facet values. Does not apply to regular search queries. For performance reasons, the maximum allowed number of returned values is 100. Any value outside the range [1, 100] will be rejected.
+| camelCaseAttributes       | String | List of attributes on which to do a decomposition of camel case words. Camel case compounds are basically words glued together, and being able to find a camel case compound when searching for one of its words often makes sense. This setting automatically splits camel case compounds into separate words and allows for example to find "camelCaseAttributes" when searching for "case".
 
 #### `attributesToIndex` example:
 ```json
@@ -647,7 +654,7 @@ This method updates part of index settings, the list of attributes and their beh
 
 #### `placeholders` example:
 ```json
-"placeholders": { "name" : "Apple Store", "address" : "<streetnumber> Opera street, Paris" }
+"placeholders": { "<name>" : ["placeholder2","placeholder1"] }
 ```
 
 #### `altCorrections` example:
@@ -826,7 +833,6 @@ Perform multiple write operations, potentially targeting multiple indices, in a 
 |--------------|------------|----------
 | apiKey       | credentials| Algolia Application Key.
 | appId        | credentials| Algolia Application ID.
-| indexName    | String     | Index name.
 | requests          | Array     | List of operations to batch. Each operation is described by: indexName (string): name of the index targeted by this operation action (string): type of operation body (object): arguments to the operation (depends on the type of the operation).
 
 #### Example
@@ -853,4 +859,24 @@ Perform multiple write operations, potentially targeting multiple indices, in a 
       }
   ]
 }
+```
+
+## Algolia.batchSynonymsWriteOperations
+Create/update multiple synonym objects at once, potentially replacing the entire list of synonyms if replaceExistingSynonyms is true. You should always use replaceExistingSynonyms to atomically replace all your synonyms on a production index. This is the only way to ensure your index always has a list of synonyms to use during the indexing of the new list.
+
+| Field        | Type       | Description
+|--------------|------------|----------
+| apiKey       | credentials| Algolia Application Key.
+| appId        | credentials| Algolia Application ID.
+| indexName    | String     | Index name.
+| requests          | Array     | List of operations to batch. The POST body must be a JSON array of synonym objects. The syntax of each object is the same as in Create/update a synonym. See more [here](https://www.algolia.com/doc/rest-api/search/#createupdate-a-synonym)
+
+### Example 
+```
+  {
+    "objectID": "2",
+    "type": "onewaysynonym",
+    "input": "iphone",
+    "synonyms": [ "ephone", "aphone", "yphone", "apple phone"]
+  }
 ```

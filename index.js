@@ -122,7 +122,7 @@ for (let func in control) {
         {
           options.query['alternativesAsExact|String'] = options.query['alternativesAsExact|String'].join(',');
         }
-        console.log(options);
+
       response = yield api.request(options);
       r.callback = 'success';
       r.contextWrites['to'] = response == '' ? {
