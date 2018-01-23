@@ -818,3 +818,39 @@ Delete all records matching the query.This endpoint doesn’t support all the op
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name.
 | params          | String     | Delete query.Example:facetFilters=category:test.
+
+## Algolia.batchWriteOperations
+Perform multiple write operations, potentially targeting multiple indices, in a single API call. This is essentially a multi-index version of Batch write operations. It can be useful to modify multiple indices at the same time (e.g. if you have one index per user).
+
+| Field        | Type       | Description
+|--------------|------------|----------
+| apiKey       | credentials| Algolia Application Key.
+| appId        | credentials| Algolia Application ID.
+| indexName    | String     | Index name.
+| requests          | Array     | List of operations to batch. Each operation is described by: indexName (string): name of the index targeted by this operation action (string): type of operation body (object): arguments to the operation (depends on the type of the operation).
+
+#### Example
+```
+{
+  "requests": [
+    {
+      "action": "addObject",
+      "indexName": "contacts",
+      "body": {
+                "name": "Betty Jane Mccamey",
+                "company": "Vita Foods Inc.",
+                "email": "betty@mccamey.com"
+              }
+    },
+    {
+        "action": "addObject",
+        "indexName": "public_contacts",
+        "body": {
+                  "name": "Gayla Geimer",
+                  "company": "Ortman Mccain Co",
+                  "email": "gayla@geimer.com"
+                }
+      }
+  ]
+}
+```

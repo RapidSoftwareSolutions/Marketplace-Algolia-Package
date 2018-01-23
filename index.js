@@ -78,8 +78,7 @@ for (let func in control) {
 
            if(req.body.args[argarr[1]] === 'true')
            {
-             console.log(args[arg]);
-            argarr[1] = true;
+            req.body.args[argarr[1]] = true;
            } else if(req.body.args[argarr[1]] === 'false')
            {
             req.body.args[argarr[1]] = false;
@@ -95,7 +94,6 @@ for (let func in control) {
       //options.isRawBody = method == 'POST' || method == 'PUT';
       options.method = method;
       if(func == 'batchObjectsWrite'){
-        console.log(rawArgs);
         options.body['$!requests|Raw'] = {"requests":rawArgs};
         }
 
@@ -124,7 +122,7 @@ for (let func in control) {
         {
           options.query['alternativesAsExact|String'] = options.query['alternativesAsExact|String'].join(',');
         }
-      // console.log(options);
+        console.log(options);
       response = yield api.request(options);
       r.callback = 'success';
       r.contextWrites['to'] = response == '' ? {

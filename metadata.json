@@ -2849,6 +2849,65 @@
           "info": "Error"
         }
       ]
+    },
+    {
+      "name": "batchWriteOperations",
+      "description": "Perform multiple write operations, potentially targeting multiple indices, in a single API call. This is essentially a multi-index version of Batch write operations. It can be useful to modify multiple indices at the same time (e.g. if you have one index per user).",
+      "args": [
+        {
+          "name": "apiKey",
+          "type": "credentials",
+          "info": "Algolia Application Key.",
+            "required": true
+        },
+        {
+          "name": "appId",
+          "type": "credentials",
+          "info": "Algolia Application ID.",
+            "required": true
+        },
+        {
+          "name": "indexName",
+          "type": "String",
+          "info": "Index Name",
+          "required": true
+        },
+        {
+          "name": "requests",
+          "type": "Array",
+          "structure":[{
+            "name":"indexName",
+            "type":"String",
+            "info":"Name of the index targeted by this operation.",
+            "required":true
+          },
+          {
+            "name":"action",
+            "type":"String",
+            "info":"Type of operation.",
+            "required":true
+          },
+          {
+            "name":"body",
+            "type":"JSON",
+            "info":"Arguments to the operation (depends on the type of the operation).",
+            "required":true
+          }
+        ],
+          "info": "List of operations to batch.See more in readme.",
+          "required": true
+        }
+      ],
+      "callbacks": [
+        {
+          "name": "success",
+          "info": "Success"
+        },
+        {
+          "name": "error",
+          "info": "Error"
+        }
+      ]
     }
   ]
 }

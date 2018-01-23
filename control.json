@@ -451,13 +451,13 @@
     },
     "getIndexContent": {
         "url": "/1/indexes/:indexName/browse",
-        "method": "GET",
+        "method": "POST",
         "args": {
             "credentials|apiKey": "$!apiKey",
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
-            "String|params": "$!params",
-            "String|cursor": "$!cursor"
+            "String|params": "params",
+            "String|cursor": "cursor"
         }
     },
     "changeIndexSettings": {
@@ -642,6 +642,16 @@
             "credentials|appId": "$!appId",
             "String|indexName": "$!indexName",
             "String|params": "$params"
+        }
+    },
+    "batchWriteOperations": {
+        "url": "/1/indexes/*/batch",
+        "method": "POST",
+        "args": {
+            "credentials|apiKey": "$!apiKey",
+            "credentials|appId": "$!appId",
+            "String|indexName": "$!indexName",
+            "JSON|requests": "$requests"
         }
     }
 }
