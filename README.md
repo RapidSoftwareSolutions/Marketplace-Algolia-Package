@@ -40,6 +40,7 @@ Return last logs.
 | offset| Number     | Specify the first entry to retrieve (0-based, 0 is the most recent log entry). Defaults to 0.
 | length| Number     | Specify the maximum number of entries to retrieve starting at offset. Defaults to 10. Maximum allowed value: 1000.
 | type  | Select     | Specify the type of logs to retrieve. This parameter is useful for debugging, especially when it is difficult to locate errors among many API calls:`all` (default): Retrieve all logs; `query`: Retrieve only the queries; `build`: Retrieve only the build operations; `error`: Retrieve only the errors
+| indexName | String     | Index for which log entries should be retrieved. When omitted, log entries are retrieved across all indices.
 
 ## Algolia.addGlobalApiKey
 This method add a new global API key.
@@ -222,7 +223,7 @@ Create a new one-way synonym set
 "synonyms": [ "ephone", "aphone", "yphone", "apple phone"]
 ```
 
-## Algolia.updateOnуWaySynonymSet
+## Algolia.updateOneWaySynonymSet
 Update a new one-way synonym set
 
 | Field         | Type       | Description

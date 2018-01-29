@@ -1174,7 +1174,8 @@
         },
         {
           "name": "queryType",
-          "type": "String",
+          "type": "Select",
+          "options":["prefixAll", "prefixLast", "prefixNone"],
           "info": "Selects how the query words are interpreted: `prefixAll`, `prefixLast`, `prefixNone`",
           "required": false
         },
@@ -1217,13 +1218,15 @@
         },
         {
           "name": "advancedSyntax",
-          "type": "String",
+          "type": "Select",
+          "options":["true","false"],
           "info": "Enable the advanced query syntax. Defaults to 0 (false).",
           "required": false
         },
         {
           "name": "analytics",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to false, this query will not be taken into account for the Analytics. Defaults to true.",
           "required": false
         },
@@ -1235,7 +1238,8 @@
         },
         {
           "name": "synonyms",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to false, this query will not use synonyms defined in configuration. Defaults to true.",
           "required": false
         },
@@ -2224,7 +2228,8 @@
         },
         {
           "name": "queryType",
-          "type": "String",
+          "type": "Select",
+          "options":["prefixAll", "prefixLast", "prefixNone"],
           "info": "Select how the query words are interpreted, it can be one of the following value: `prefixAll`, `prefixLast`, `prefixNone`.",
           "required": false
         },
