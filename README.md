@@ -256,7 +256,7 @@ The engine would then account for one or two typos for records containing "iPadâ
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
+| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`.
 | word          | String     | Word to add alternative synonyms collection for
 | corrections   | List       | Array of corrections strings. Example: `["ipad"]`
 
@@ -270,7 +270,7 @@ Update a new alternative correction synonym set
 | indexName     | String     | Index name.
 | objectId      | String     | Object ID.
 | forwardToSlave| Boolean    | Push the new/updated synonyms set to all slave indices
-| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`, `altcorrection1|altcorrection2`.
+| type          | Select     | Valid values: `altcorrection1`, `altcorrection2`.
 | word          | String     | Word to add alternative synonyms collection for
 | corrections   | List       | Array of corrections strings.
 
@@ -473,7 +473,7 @@ Perform multiple write operations in a single API call.
 | apiKey       | credentials| Algolia Application Key.
 | appId        | credentials| Algolia Application ID.
 | indexName    | String     | Index name to add object for.
-| requests       | List       | Request objects.
+| requests       | JSON       | Request objects.
 
 #### `requests` format:
 ```json

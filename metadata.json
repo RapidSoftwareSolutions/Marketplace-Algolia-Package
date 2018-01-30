@@ -1206,7 +1206,8 @@
         },
         {
           "name": "ignorePlurals",
-          "type": "Boolean",
+          "type": "Select",
+          "options":["true","false"],
           "info": "If set to true, simple plural forms won’t be considered as typos (for example car/cars will be considered as equal). Defaults to false.",
           "required": false
         },

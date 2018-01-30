@@ -94,6 +94,10 @@ for (let func in control) {
       //options.isRawBody = method == 'POST' || method == 'PUT';
       options.method = method;
       if(func == 'batchObjectsWrite'){
+        if(typeof(rawArgs) ==='string')
+        {
+          rawArgs = JSON.parse(rawArgs);
+        }
         options.body['$!requests|Raw'] = {"requests":rawArgs};
         }
 
